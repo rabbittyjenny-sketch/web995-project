@@ -5,45 +5,50 @@
     --neon-magenta: #e80074;
     --neon-purple: #c200db;
     --deep-blue: #1d1856;
-    --glass-bg: rgba(26, 26, 30, 0.5); 
-    --glass-border: rgba(0, 207, 229, 0.2); 
-    --ai-widget-bg: rgba(20, 20, 30, 0.7); 
-    --ai-widget-border: rgba(0, 207, 229, 0.5); 
+    --glass-bg: rgba(26, 26, 30, 0.5);
+    --glass-border: rgba(0, 207, 229, 0.2);
+    --ai-widget-bg: rgba(20, 20, 30, 0.7);
+    --ai-widget-border: rgba(0, 207, 229, 0.5);
 }
 
 body {
     font-family: 'IBM Plex Sans Thai', sans-serif;
-    background-color: var(--bg-dark); 
+    background-color: var(--bg-dark);
     color: #E0E0E0;
     overflow-x: hidden;
 }
 
 /* --- Typography Classes (Ensure consistency) --- */
 .font-heading {
-    font-family: 'Orbitron', sans-serif; 
-    font-weight: 700; 
-}
-.font-subheading { 
     font-family: 'Orbitron', sans-serif;
-    font-weight: 500; 
+    font-weight: 700;
 }
+
+.font-subheading {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 500;
+}
+
 .font-body-thai {
     font-family: 'IBM Plex Sans Thai', sans-serif;
-    font-weight: 300; 
+    font-weight: 300;
 }
+
 .font-body-thai-bold {
     font-family: 'IBM Plex Sans Thai', sans-serif;
-    font-weight: 700; 
+    font-weight: 700;
 }
+
 .font-body-eng {
-    font-family: 'Orbitron', sans-serif; 
-    font-weight: 400; 
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 400;
 }
 
 /* --- Neon Text Shadow --- */
 .neon-shadow-text-cyan {
     text-shadow: 0 0 12px var(--neon-cyan), 0 0 25px rgba(0, 207, 229, 0.6);
 }
+
 .neon-shadow-text-magenta {
     text-shadow: 0 0 12px var(--neon-magenta), 0 0 25px rgba(232, 0, 116, 0.6);
 }
@@ -56,192 +61,213 @@ body {
     background-attachment: fixed;
     z-index: 1;
 }
+
 [data-bg-image]::before {
     content: '';
     position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background-color: rgba(10, 10, 10, 0.85); /* Black Overlay */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(10, 10, 10, 0.85);
+    /* Black Overlay */
     z-index: -1;
 }
 
 /* Home, Why Us, Services: ภาพคลื่นแสง Neon เส้นหนา 470a17f9-1dfb-40be-a8ae-9e41fd521651.jpg */
-#home, #why-us, #services { 
-    background-image: url('470a17f9-1dfb-40be-a8ae-9e41fd521651.jpg'); 
+#home,
+#why-us,
+#services {
+    background-image: url('470a17f9-1dfb-40be-a8ae-9e41fd521651.jpg');
 }
+
 /* Portfolio, Contact, Shop, Blank: ภาพคลื่นแสง Neon เส้นบางพริ้ว 4308215.jpg */
-#portfolio, #contact, #shop, #admin, #blank-page { 
-    background-image: url('4308215.jpg'); 
+#portfolio,
+#contact,
+#shop,
+#admin,
+#blank-page {
+    background-image: url('4308215.jpg');
 }
 
 
 /* --- Glassmorphism Card (Neumorphic Glass) --- */
 .glass-card {
-    background: rgba(20, 20, 30, 0.25); 
-    backdrop-filter: blur(16px); 
+    background: rgba(20, 20, 30, 0.25);
+    backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(0, 207, 229, 0.2); 
-    border-radius: 1.5rem; 
-    box-shadow: 
-        inset 0 3px 5px rgba(255, 255, 255, 0.1), 
-        inset 0 -1px 2px rgba(0, 0, 0, 0.2), 
-        0 0 20px rgba(0, 207, 229, 0.15), 
-        0 0 50px rgba(194, 0, 219, 0.05); 
+    border: 1px solid rgba(0, 207, 229, 0.2);
+    border-radius: 1.5rem;
+    box-shadow:
+        inset 0 3px 5px rgba(255, 255, 255, 0.1),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.2),
+        0 0 20px rgba(0, 207, 229, 0.15),
+        0 0 50px rgba(194, 0, 219, 0.05);
     transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.5s ease;
 }
 
 .glass-card:hover {
-    transform: translateY(-8px) scale(1.01); 
-    box-shadow: 
-        inset 0 3px 5px rgba(255, 255, 255, 0.15), 
-        0 8px 40px rgba(0, 207, 229, 0.6), 
-        0 8px 60px rgba(232, 0, 116, 0.3); 
+    transform: translateY(-8px) scale(1.01);
+    box-shadow:
+        inset 0 3px 5px rgba(255, 255, 255, 0.15),
+        0 8px 40px rgba(0, 207, 229, 0.6),
+        0 8px 60px rgba(232, 0, 116, 0.3);
 }
 
 /* --- Glass Button (Nodular Effect) --- */
 .glass-button {
     font-family: 'Orbitron', sans-serif;
-    background: rgba(20, 20, 30, 0.4); 
+    background: rgba(20, 20, 30, 0.4);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid var(--neon-cyan);
     color: var(--neon-cyan);
-    padding: 0.6rem 1.2rem; 
-    border-radius: 1rem; 
-    font-weight: 500; 
+    padding: 0.6rem 1.2rem;
+    border-radius: 1rem;
+    font-weight: 500;
     transition: all 0.3s ease;
-    box-shadow: 
-        inset 2px 2px 5px rgba(0, 0, 0, 0.3), 
+    box-shadow:
+        inset 2px 2px 5px rgba(0, 0, 0, 0.3),
         inset -2px -2px 5px rgba(255, 255, 255, 0.1),
-        0 4px 15px rgba(0, 207, 229, 0.3); 
+        0 4px 15px rgba(0, 207, 229, 0.3);
 }
 
-.glass-button:hover, .glass-button.active {
+.glass-button:hover,
+.glass-button.active {
     background: var(--neon-cyan);
     color: var(--bg-dark);
-    box-shadow: 
-        inset 1px 1px 3px rgba(0, 0, 0, 0.5), 
-        0 0 25px var(--neon-cyan); 
+    box-shadow:
+        inset 1px 1px 3px rgba(0, 0, 0, 0.5),
+        0 0 25px var(--neon-cyan);
     transform: translateY(-2px);
 }
 
 /* --- Magic Button (Shine & Nodular Effect) --- */
 .magic-button {
     font-family: 'Orbitron', sans-serif;
-    background: rgba(0, 207, 229, 0.15); 
+    background: rgba(0, 207, 229, 0.15);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 2px solid var(--neon-cyan);
     color: var(--neon-cyan);
-    padding: 0.8rem 1.8rem; 
-    border-radius: 1.5rem; 
-    font-weight: 600; 
+    padding: 0.8rem 1.8rem;
+    border-radius: 1.5rem;
+    font-weight: 600;
     transition: all 0.3s ease;
-    box-shadow: 
-        inset 3px 3px 8px rgba(0, 0, 0, 0.4), 
+    box-shadow:
+        inset 3px 3px 8px rgba(0, 0, 0, 0.4),
         inset -3px -3px 8px rgba(255, 255, 255, 0.15),
-        0 6px 20px rgba(0, 207, 229, 0.5); 
-    display: inline-block; 
-    overflow: hidden; 
+        0 6px 20px rgba(0, 207, 229, 0.5);
+    display: inline-block;
+    overflow: hidden;
     position: relative;
-    z-index: 1; 
+    z-index: 1;
 }
+
 .magic-button:before {
     content: '';
     position: absolute;
     top: 0;
-    left: -150%; 
-    width: 50%; 
+    left: -150%;
+    width: 50%;
     height: 100%;
     background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
     transform: skewX(-20deg);
-    transition: transform 0s; 
-    z-index: 2; 
+    transition: transform 0s;
+    z-index: 2;
 }
+
 .magic-button:hover {
     background-color: var(--neon-cyan);
     color: var(--bg-dark);
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 
-        inset 1px 1px 4px rgba(0, 0, 0, 0.6), 
-        0 0 30px var(--neon-cyan); 
+    box-shadow:
+        inset 1px 1px 4px rgba(0, 0, 0, 0.6),
+        0 0 30px var(--neon-cyan);
 }
+
 .magic-button:hover:before {
-    transform: skewX(-20deg) translateX(400%); 
+    transform: skewX(-20deg) translateX(400%);
     transition: transform 1.2s ease-in-out;
 }
 
 /* --- Magic Button Magenta --- */
 .magic-button.magenta {
-    background: rgba(232, 0, 116, 0.15); 
+    background: rgba(232, 0, 116, 0.15);
     border-color: var(--neon-magenta);
     color: var(--neon-magenta);
-    box-shadow: 
-        inset 3px 3px 8px rgba(0, 0, 0, 0.4), 
+    box-shadow:
+        inset 3px 3px 8px rgba(0, 0, 0, 0.4),
         inset -3px -3px 8px rgba(255, 255, 255, 0.15),
         0 6px 20px rgba(232, 0, 116, 0.5);
 }
+
 .magic-button.magenta:hover {
     background-color: var(--neon-magenta);
     color: var(--bg-dark);
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 
-        inset 1px 1px 4px rgba(0, 0, 0, 0.6), 
+    box-shadow:
+        inset 1px 1px 4px rgba(0, 0, 0, 0.6),
         0 0 30px var(--neon-magenta);
 }
+
 .magic-button.magenta:hover:before {
     background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0) 100%);
-    transform: skewX(-20deg) translateX(400%); 
+    transform: skewX(-20deg) translateX(400%);
     transition: transform 1.2s ease-in-out;
 }
 
 /* --- Promo Magic Button (Pulsating) --- */
 .promo-magic-button {
     font-family: 'Orbitron', sans-serif;
-    background-color: rgba(232, 0, 116, 0.7); 
+    background-color: rgba(232, 0, 116, 0.7);
     border: 1px solid var(--neon-magenta);
     color: white;
-    padding: 0.9rem 2rem; 
-    border-radius: 9999px; 
+    padding: 0.9rem 2rem;
+    border-radius: 9999px;
     font-weight: 700;
     transition: all 0.3s ease;
-    box-shadow: 
-        inset 4px 4px 10px rgba(0, 0, 0, 0.5), 
+    box-shadow:
+        inset 4px 4px 10px rgba(0, 0, 0, 0.5),
         inset -4px -4px 10px rgba(255, 255, 255, 0.2),
         0 0 20px var(--neon-magenta), 0 0 35px var(--neon-magenta) inset;
     animation: pulsating-neon 2s infinite alternate;
-    overflow: hidden; 
+    overflow: hidden;
     position: relative;
     z-index: 1;
 }
+
 .promo-magic-button:before {
     content: '';
     position: absolute;
     top: 0;
-    left: -150%; 
-    width: 50%; 
+    left: -150%;
+    width: 50%;
     height: 100%;
     background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
     transform: skewX(-20deg);
-    transition: transform 0s; 
+    transition: transform 0s;
     z-index: 2;
 }
+
 .promo-magic-button:hover:before {
-    transform: skewX(-20deg) translateX(400%); 
+    transform: skewX(-20deg) translateX(400%);
     transition: transform 1.2s ease-in-out;
 }
 
 @keyframes pulsating-neon {
-    0% { 
-        box-shadow: 
-            inset 4px 4px 10px rgba(0, 0, 0, 0.5), 
+    0% {
+        box-shadow:
+            inset 4px 4px 10px rgba(0, 0, 0, 0.5),
             inset -4px -4px 10px rgba(255, 255, 255, 0.2),
-            0 0 20px var(--neon-magenta), 0 0 35px var(--neon-magenta) inset; 
+            0 0 20px var(--neon-magenta), 0 0 35px var(--neon-magenta) inset;
     }
-    100% { 
-        box-shadow: 
-            inset 2px 2px 8px rgba(0, 0, 0, 0.6), 
+
+    100% {
+        box-shadow:
+            inset 2px 2px 8px rgba(0, 0, 0, 0.6),
             inset -2px -2px 8px rgba(255, 255, 255, 0.3),
-            0 0 30px var(--neon-magenta), 0 0 50px var(--neon-magenta) inset; 
+            0 0 30px var(--neon-magenta), 0 0 50px var(--neon-magenta) inset;
     }
 }
 
@@ -251,6 +277,7 @@ body {
     transform: translateY(30px);
     transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
 }
+
 .is-visible {
     opacity: 1;
     transform: translateY(0);
@@ -265,8 +292,11 @@ body {
     height: 24px;
     animation: spin 1s linear infinite;
 }
+
 @keyframes spin {
-    to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 /* --- AI Widget --- */
@@ -275,7 +305,7 @@ body {
     bottom: 2rem;
     right: 2rem;
     z-index: 1000;
-    width: 70px; 
+    width: 70px;
     height: 70px;
     background: var(--ai-widget-bg);
     border: 2px solid var(--ai-widget-border);
@@ -284,42 +314,47 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    box-shadow: 
-        inset 2px 2px 5px rgba(0, 0, 0, 0.4), 
+    box-shadow:
+        inset 2px 2px 5px rgba(0, 0, 0, 0.4),
         inset -2px -2px 5px rgba(255, 255, 255, 0.1),
-        0 0 15px var(--neon-cyan), 
+        0 0 15px var(--neon-cyan),
         0 0 25px rgba(0, 207, 229, 0.4);
     transition: all 0.3s ease;
-    transform-style: preserve-3d; 
+    transform-style: preserve-3d;
     animation: pulsate-ai 3s infinite alternate ease-in-out;
 }
 
 .ai-widget:hover {
-    transform: translateY(-5px) rotateX(10deg) rotateY(10deg) scale(1.05); 
-    box-shadow: 
-        inset 1px 1px 3px rgba(0, 0, 0, 0.5), 
-        0 0 25px var(--neon-cyan), 
+    transform: translateY(-5px) rotateX(10deg) rotateY(10deg) scale(1.05);
+    box-shadow:
+        inset 1px 1px 3px rgba(0, 0, 0, 0.5),
+        0 0 25px var(--neon-cyan),
         0 0 40px var(--neon-purple);
 }
 
 @keyframes pulsate-ai {
-    0% { box-shadow: 
-            inset 2px 2px 5px rgba(0, 0, 0, 0.4), 
+    0% {
+        box-shadow:
+            inset 2px 2px 5px rgba(0, 0, 0, 0.4),
             inset -2px -2px 5px rgba(255, 255, 255, 0.1),
-            0 0 15px var(--neon-cyan), 
-            0 0 25px rgba(0, 207, 229, 0.4); 
+            0 0 15px var(--neon-cyan),
+            0 0 25px rgba(0, 207, 229, 0.4);
     }
-    50% { box-shadow: 
-            inset 1px 1px 4px rgba(0, 0, 0, 0.5), 
+
+    50% {
+        box-shadow:
+            inset 1px 1px 4px rgba(0, 0, 0, 0.5),
             inset -1px -1px 4px rgba(255, 255, 255, 0.2),
-            0 0 20px var(--neon-cyan), 
-            0 0 35px rgba(0, 207, 229, 0.6); 
+            0 0 20px var(--neon-cyan),
+            0 0 35px rgba(0, 207, 229, 0.6);
     }
-    100% { box-shadow: 
-            inset 2px 2px 5px rgba(0, 0, 0, 0.4), 
+
+    100% {
+        box-shadow:
+            inset 2px 2px 5px rgba(0, 0, 0, 0.4),
             inset -2px -2px 5px rgba(255, 255, 255, 0.1),
-            0 0 15px var(--neon-cyan), 
-            0 0 25px rgba(0, 207, 229, 0.4); 
+            0 0 15px var(--neon-cyan),
+            0 0 25px rgba(0, 207, 229, 0.4);
     }
 }
 
@@ -331,13 +366,13 @@ body {
 }
 
 .ai-widget:hover svg {
-    transform: rotateY(15deg); 
-    color: white; 
+    transform: rotateY(15deg);
+    color: white;
 }
 
 .ai-tooltip {
     position: absolute;
-    bottom: calc(100% + 10px); 
+    bottom: calc(100% + 10px);
     right: 0;
     background: rgba(30, 30, 40, 0.85);
     backdrop-filter: blur(10px);
@@ -352,7 +387,7 @@ body {
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease, visibility 0.3s ease;
-    pointer-events: none; 
+    pointer-events: none;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3), 0 0 10px rgba(0, 207, 229, 0.2);
 }
 
@@ -372,7 +407,8 @@ body {
     border-right: 8px solid transparent;
     border-top: 8px solid var(--ai-widget-border);
 }
-.ai-tooltip::before { 
+
+.ai-tooltip::before {
     content: '';
     position: absolute;
     bottom: -7px;
@@ -386,4 +422,6 @@ body {
 }
 
 /* --- Utility --- */
-.hidden { display: none; }
+.hidden {
+    display: none;
+}
