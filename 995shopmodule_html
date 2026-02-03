@@ -1,0 +1,82 @@
+<!-- E-Shop Section (หน้าร้านค้า) -->
+<section id="shop" class="py-24 data-bg-image">
+    <div class="container mx-auto px-6 max-w-7xl">
+        <h2 class="text-4xl font-heading font-bold text-center mb-12 neon-shadow-text-cyan fade-in-up">995 Merch Shop</h2>
+
+        <div class="text-center mb-10 fade-in-up delay-200">
+            <p class="text-lg font-body-thai text-gray-400">สินค้าและของที่ระลึกที่ขับเคลื่อนด้วย Data และ Innovation</p>
+        </div>
+        
+        <!-- Product Grid Container (Renders via script.js) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="shop-products-container">
+            <!-- Products will be injected here by script.js -->
+        </div>
+
+        <!-- Product Detail Modal (Overlay Structure for Future Expansion) -->
+        <div id="product-detail-modal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-[1001] hidden flex items-center justify-center p-4">
+            <div class="glass-card w-full max-w-3xl p-8 transform scale-95 transition-all duration-300">
+                <div class="flex justify-between items-start mb-6">
+                    <h3 class="text-3xl font-heading neon-shadow-text-cyan" id="modal-product-name">Product Name</h3>
+                    <button class="glass-button" id="close-modal-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <img src="" id="modal-product-image" alt="Product Image" class="rounded-lg w-full">
+                    <div>
+                        <p class="text-xl font-heading text-cyan mb-2" id="modal-product-price">1,999 บาท</p>
+                        <p class="text-gray-400 font-body-thai mb-4" id="modal-product-description">รายละเอียดสินค้าแบบเต็ม</p>
+                        <button class="promo-magic-button w-full font-subheading mt-4">BUY NOW</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- Admin Panel Section (หน้าจัดการสินค้า) -->
+<section id="admin" class="py-24 data-bg-image">
+    <div class="container mx-auto px-6 max-w-7xl">
+        <h2 class="text-4xl font-heading font-bold text-center mb-12 neon-shadow-text-magenta fade-in-up">Admin Panel (Google Sheet Manager)</h2>
+        
+        <div class="glass-card p-8 fade-in-up delay-200">
+            <p class="text-lg font-body-thai text-yellow-400 mb-6">
+                <span class="font-body-thai-bold">หมายเหตุ:</span> หน้านี้จำลองการทำงานของ Admin Panel ที่จะเชื่อมต่อกับ Google Sheets ผ่าน App Script
+                ข้อมูลที่บันทึกจะถูกส่งไปยัง App Script Webhook ของคุณ (ในโลกจริง)
+            </p>
+
+            <!-- Add New Product Form -->
+            <h3 class="text-2xl font-subheading text-white mb-4 neon-shadow-text-cyan">Add New Product</h3>
+            <form id="new-product-form" class="glass-card p-6 grid grid-cols-2 md:grid-cols-3 gap-4 mb-10">
+                <input type="text" name="name_th" placeholder="Name (TH)" required class="col-span-2 md:col-span-1 p-3 bg-gray-900 bg-opacity-70 border border-cyan-400 rounded-md text-white font-body-thai">
+                <input type="number" name="price" placeholder="Price" required class="p-3 bg-gray-900 bg-opacity-70 border border-cyan-400 rounded-md text-white font-body-eng">
+                <input type="number" name="discount" placeholder="Discount (%)" class="p-3 bg-gray-900 bg-opacity-70 border border-cyan-400 rounded-md text-white font-body-eng">
+                <input type="text" name="image_url" placeholder="Image URL" required class="col-span-2 p-3 bg-gray-900 bg-opacity-70 border border-cyan-400 rounded-md text-white text-xs font-body-eng">
+                <input type="text" name="description_th" placeholder="Description (TH)" required class="col-span-2 p-3 bg-gray-900 bg-opacity-70 border border-cyan-400 rounded-md text-white font-body-thai">
+                <button type="submit" class="promo-magic-button col-span-2 font-subheading">CREATE NEW PRODUCT</button>
+            </form>
+
+            <!-- Product Management Table -->
+            <h3 class="text-2xl font-subheading text-white mb-4 neon-shadow-text-cyan">Edit Existing Products</h3>
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-700">
+                    <thead class="bg-gray-800 bg-opacity-30">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-subheading text-cyan uppercase tracking-wider">ID</th>
+                            <th class="px-6 py-3 text-left text-xs font-subheading text-cyan uppercase tracking-wider">Name (TH)</th>
+                            <th class="px-6 py-3 text-left text-xs font-subheading text-cyan uppercase tracking-wider">Price</th>
+                            <th class="px-6 py-3 text-left text-xs font-subheading text-cyan uppercase tracking-wider">Discount (%)</th>
+                            <th class="px-6 py-3 text-left text-xs font-subheading text-cyan uppercase tracking-wider">Image URL</th>
+                            <th class="px-6 py-3 text-left text-xs font-subheading text-cyan uppercase tracking-wider">Description (TH)</th>
+                            <th class="px-6 py-3 text-left text-xs font-subheading text-cyan uppercase tracking-wider">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="admin-table-body" class="divide-y divide-gray-700">
+                        <!-- Product rows injected here by script.js -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
