@@ -24,30 +24,29 @@
 
 <body class="bg-bg-dark text-gray-200">
 
+    <!-- Header with Full Navigation -->
     <header class="sticky top-0 z-50 glass-card rounded-none border-b border-[var(--neon-cyan)]">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="flex-shrink-0">
                 <img src="logo995.png" alt="995 EVENTS" class="h-12 w-auto">
             </a>
 
-            <div class="flex items-center space-x-6">
-                <a href="index.html"
-                    class="font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition">HOME</a>
-                <a href="updates.html"
-                    class="font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition">995 UPDATES</a>
-                <a href="contact.html" class="font-subheading text-[var(--neon-cyan)]">CONTACT</a>
-                <a href="shop.html"
-                    class="font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition">SHOP</a>
-
-                <a href="cart.html" class="relative ml-2">
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html#home" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">HOME</a>
+                <a href="index.html#why-us" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">WHY 995</a>
+                <a href="index.html#services" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">SERVICES</a>
+                <a href="index.html#portfolio" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">PORTFOLIO</a>
+                <a href="experience.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">EXPERIENCE</a>
+                <a href="shop.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">SHOP</a>
+                <a href="contact.html" class="nav-link font-subheading text-[var(--neon-cyan)] transition duration-300">CONTACT</a>
+                <!-- Cart Button -->
+                <a href="cart.html" id="cart-btn" class="relative ml-2" title="Shopping Cart">
                     <svg class="w-6 h-6 text-[var(--neon-cyan)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
                     </svg>
                     <span id="cart-badge" class="cart-badge hidden">0</span>
                 </a>
-
-                <a href="login.html" id="user-btn" class="glass-button text-sm">เข้าสู่ระบบ</a>
             </div>
 
             <button id="mobile-menu-btn" class="md:hidden">
@@ -58,119 +57,97 @@
         </nav>
 
         <div id="mobile-menu" class="hidden md:hidden bg-black/90 backdrop-blur-md">
-            <a href="index.html" class="block text-center py-3 font-subheading">HOME</a>
-            <a href="updates.html" class="block text-center py-3 font-subheading">995 UPDATES</a>
+            <a href="index.html#home" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">HOME</a>
+            <a href="index.html#why-us" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">WHY 995</a>
+            <a href="index.html#services" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">SERVICES</a>
+            <a href="index.html#portfolio" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">PORTFOLIO</a>
+            <a href="experience.html" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">EXPERIENCE</a>
+            <a href="shop.html" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">SHOP</a>
             <a href="contact.html" class="block text-center py-3 font-subheading text-[var(--neon-cyan)]">CONTACT</a>
-            <a href="shop.html" class="block text-center py-3 font-subheading">SHOP</a>
-            <a href="login.html" class="block text-center py-3 font-subheading">เข้าสู่ระบบ</a>
         </div>
     </header>
 
     <div id="toast" class="toast toast-success"></div>
 
     <main>
-        <section id="contact" class="py-24 min-h-screen data-bg-image">
-            <div class="container mx-auto px-6">
-                <h2 class="text-4xl font-heading text-center mb-16 neon-shadow-text-cyan fade-in-up">Contact Us</h2>
-
-                <div class="grid lg:grid-cols-2 gap-12">
-                    <!-- Contact Info -->
-                    <div class="glass-card p-8 fade-in-up">
-                        <h3 class="text-2xl font-heading text-white mb-6">995 SPORT SOLUTION CO., LTD</h3>
-                        <p class="text-sm text-gray-400 mb-6">TAX ID: 0105562129999</p>
-
-                        <div class="space-y-4">
-                            <div class="flex items-start space-x-4">
-                                <div
-                                    class="w-10 h-10 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center flex-shrink-0">
-                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                                    </svg>
+        <!-- ==================== CONTACT ==================== -->
+        <section id="contact" class="py-24 data-bg-image">
+            <div class="container mx-auto px-6 text-center max-w-7xl">
+                <h2 class="text-4xl font-heading font-bold text-white mb-6 neon-shadow-text-cyan fade-in-up">Contact Us</h2>
+                <p class="text-lg font-body-thai text-gray-400 mb-16 fade-in-up delay-100">Ready to collaborate on your next project?</p>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                    <div class="glass-card p-8 text-left fade-in-up delay-200">
+                        <h3 class="text-2xl font-heading font-bold text-white mb-6">Get In Touch</h3>
+                        <p class="text-gray-300 font-body-thai mb-8">Ready to get started on your next creative project? Get in touch and we can discuss how we can help you.</p>
+                        <div class="space-y-6">
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                                </div>
+                                <div><p class="text-white font-semibold">02-XXX-XXXX</p></div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                </div>
+                                <div><p class="text-white font-semibold">contact@995events.com</p></div>
+                            </div>
+                            <div class="flex items-center space-x-4">
+                                <div class="w-12 h-12 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center">
+                                    <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                                 </div>
                                 <div>
-                                    <p class="text-white">780/35 หมู่บ้านภัสสร เพรสทิจ ลุกซ์</p>
-                                    <p class="text-gray-400 text-sm">Phatanakarn 38, Suan Luang, Bangkok 10250</p>
+                                    <p class="text-white font-semibold">Bangkok, Thailand</p>
+                                    <p class="text-gray-400 text-sm">Asia Event Hub</p>
                                 </div>
                             </div>
-
-                            <div class="flex items-center space-x-4">
-                                <div
-                                    class="w-10 h-10 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                                    </svg>
-                                </div>
-                                <p class="text-white">02-XXX-XXXX</p>
-                            </div>
-
-                            <div class="flex items-center space-x-4">
-                                <div
-                                    class="w-10 h-10 bg-gradient-to-r from-cyan-500 to-purple-500 rounded-full flex items-center justify-center">
-                                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor"
-                                        viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                                    </svg>
-                                </div>
-                                <p class="text-white">contact@995events.com</p>
-                            </div>
-                        </div>
-
-                        <div class="mt-8 rounded-lg overflow-hidden">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.1!2d100.645!3d13.712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDQyJzQ1LjAiTiAxMDDCsDM4JzQ1LjAiRQ!5e0!3m2!1sth!2sth!4v1234567890123"
-                                width="100%" height="250" style="border:0;" allowfullscreen="" loading="lazy"
-                                class="rounded-lg"></iframe>
                         </div>
                     </div>
-
-                    <!-- Contact Form -->
-                    <div class="glass-card p-8 fade-in-up">
-                        <h3 class="text-2xl font-heading text-white mb-6">Send Message</h3>
-                        <form id="contactForm" class="space-y-4">
-                            <div class="grid grid-cols-2 gap-4">
+                    <div class="glass-card p-8 text-left fade-in-up delay-300">
+                        <h3 class="text-2xl font-heading font-bold text-white mb-6">Let's Talk About Your Next Project</h3>
+                        <form id="contactForm" class="space-y-6">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label class="block text-sm text-gray-400 mb-1">ชื่อ-นามสกุล</label>
-                                    <input type="text" name="fullName" class="admin-input" required>
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Full Name</label>
+                                    <input type="text" name="fullName" required class="w-full bg-gray-900 bg-opacity-50 border border-[var(--glass-border)] rounded-md p-3 font-body-thai text-white focus:outline-none focus:ring-2 focus:ring-[var(--neon-cyan)]" placeholder="Your name">
                                 </div>
                                 <div>
-                                    <label class="block text-sm text-gray-400 mb-1">อีเมล</label>
-                                    <input type="email" name="email" class="admin-input" required>
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                                    <input type="email" name="email" required class="w-full bg-gray-900 bg-opacity-50 border border-[var(--glass-border)] rounded-md p-3 font-body-thai text-white focus:outline-none focus:ring-2 focus:ring-[var(--neon-cyan)]" placeholder="your.email@domain.com">
                                 </div>
                             </div>
-
-                            <div class="grid grid-cols-2 gap-4">
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label class="block text-sm text-gray-400 mb-1">เบอร์โทร</label>
-                                    <input type="tel" name="phone" class="admin-input">
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Phone</label>
+                                    <input type="tel" name="phone" class="w-full bg-gray-900 bg-opacity-50 border border-[var(--glass-border)] rounded-md p-3 font-body-thai text-white focus:outline-none focus:ring-2 focus:ring-[var(--neon-cyan)]" placeholder="+66 XX XXX XXXX">
                                 </div>
                                 <div>
-                                    <label class="block text-sm text-gray-400 mb-1">งบประมาณ</label>
-                                    <select name="budget" class="admin-input">
-                                        <option value="">เลือก</option>
-                                        <option value="< 100K">&lt; 100K</option>
+                                    <label class="block text-sm font-medium text-gray-300 mb-2">Budget Range</label>
+                                    <select name="budget" class="w-full bg-gray-900 bg-opacity-50 border border-[var(--glass-border)] rounded-md p-3 font-body-thai text-white focus:outline-none focus:ring-2 focus:ring-[var(--neon-cyan)]">
+                                        <option value="">Select budget</option>
+                                        <option value="Under 100K">Under 100K</option>
                                         <option value="100K - 500K">100K - 500K</option>
                                         <option value="500K - 1M">500K - 1M</option>
-                                        <option value="> 1M">&gt; 1M</option>
+                                        <option value="1M+">1M+</option>
                                     </select>
                                 </div>
                             </div>
-
                             <div>
-                                <label class="block text-sm text-gray-400 mb-1">ข้อความ</label>
-                                <textarea name="message" rows="4" class="admin-input" required></textarea>
+                                <label class="block text-sm font-medium text-gray-300 mb-2">Message</label>
+                                <textarea rows="4" name="message" required class="w-full bg-gray-900 bg-opacity-50 border border-[var(--glass-border)] rounded-md p-3 font-body-thai text-white focus:outline-none focus:ring-2 focus:ring-[var(--neon-cyan)]" placeholder="Tell us about your project..."></textarea>
                             </div>
-
-                            <button type="submit" class="promo-magic-button w-full">
-                                <span id="submitButtonText">ส่งข้อความ</span>
+                            <button type="submit" class="promo-magic-button w-full text-lg font-subheading">
+                                <span id="submitButtonText">Send Message</span>
                             </button>
                         </form>
+                    </div>
+                </div>
+                <div class="mt-16 fade-in-up delay-400">
+                    <div class="glass-card p-2 rounded-2xl overflow-hidden">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3876.1!2d100.645!3d13.712!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTPCsDQyJzQ1LjAiTiAxMDDCsDM4JzQ1LjAiRQ!5e0!3m2!1sth!2sth!4v1234567890123"
+                            width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+                            class="rounded-xl"></iframe>
                     </div>
                 </div>
             </div>
@@ -190,7 +167,7 @@
         document.getElementById('contactForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const btn = document.getElementById('submitButtonText');
-            btn.textContent = 'กำลังส่ง...';
+            btn.textContent = 'Sending...';
 
             // Get form data
             const formData = new FormData(e.target);
@@ -203,15 +180,17 @@
             };
 
             // Send to Google Sheets
-            await saveContactToSheet(contactData);
+            if (typeof saveContactToSheet === 'function') {
+                await saveContactToSheet(contactData);
+            }
 
             await new Promise(r => setTimeout(r, 500));
 
-            showToast('ส่งข้อความสำเร็จ! เราจะติดต่อกลับเร็วๆ นี้', 'success');
-            btn.textContent = 'ส่งสำเร็จ ✓';
+            showToast('Message sent successfully! We will contact you soon.', 'success');
+            btn.textContent = 'Sent Successfully ✓';
             e.target.reset();
 
-            setTimeout(() => btn.textContent = 'ส่งข้อความ', 3000);
+            setTimeout(() => btn.textContent = 'Send Message', 3000);
         });
     </script>
 </body>
