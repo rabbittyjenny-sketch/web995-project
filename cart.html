@@ -305,10 +305,34 @@
         // Checkout form
         document.getElementById('checkout-form')?.addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('🎉 ขอบคุณสำหรับคำสั่งซื้อ! ทีมงานจะติดต่อกลับภายใน 24 ชั่วโมง');
+
+            // 1. Create Order Object
+            const inputs = e.target.elements;
+            const newOrder = {
+                orderId: 'ORD-' + Date.now(),
+                date: new Date().toISOString(),
+                customer: {
+                    name: inputs[0].value,
+                    email: inputs[1].value,
+                    phone: inputs[2].value,
+                    address: inputs[3].value
+                },
+                items: cart,
+                total: cart.reduce((sum, item) => sum + (item.finalPrice * item.quantity), 0),
+                status: 'pending'
+            };
+
+            // 2. Save to LocalStorage (Simulated Backend for Admin to see)
+            const allOrders = JSON.parse(localStorage.getItem('995_orders_local') || '[]');
+            allOrders.unshift(newOrder); // Add to top
+            localStorage.setItem('995_orders_local', JSON.stringify(allOrders));
+
+            // 3. Clear Cart & Alert
+            alert(`🎉 ขอบคุณสำหรับคำสั่งซื้อ #${newOrder.orderId}!\nทีมงานจะติดต่อกลับคุณ ${newOrder.customer.name} ภายใน 24 ชั่วโมง`);
             cart = [];
             saveCart();
             updateCartDisplay();
+            e.target.reset();
         });
 
         // Make functions global
