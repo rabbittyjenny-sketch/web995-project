@@ -36,9 +36,7 @@
             border-radius: 1rem;
             overflow: hidden;
             background: #000;
-            /* Fallback background */
             display: flex;
-            /* Ensure centering */
             align-items: center;
             justify-content: center;
         }
@@ -62,25 +60,42 @@
         }
 
         @keyframes bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
+            0%, 20%, 50%, 80%, 100% {
                 transform: translateX(-50%) translateY(0);
             }
-
             40% {
                 transform: translateX(-50%) translateY(-20px);
             }
-
             60% {
                 transform: translateX(-50%) translateY(-10px);
             }
         }
 
-        /* Improved Spacing */
+        /* Section Background */
+        #home, #why-us, #services {
+            background-image: url('470a17f9-1dfb-40be-a8ae-9e41fd521651.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+        }
+
+        #home::before, #why-us::before, #services::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(10, 10, 10, 0.85);
+            z-index: 0;
+        }
+
+        #home > *, #why-us > *, #services > * {
+            position: relative;
+            z-index: 1;
+        }
+
         .section-spacing {
             padding: 6rem 0;
         }
@@ -89,18 +104,10 @@
             max-width: 1400px;
             margin: 0 auto;
         }
-
-        #home {
-            background-image: url('bg1.png');
-        }
-
-        #portfolio {
-            background-image: url('bg2.png');
-        }
     </style>
 </head>
 
-<body class="bg-bg-dark text-gray-200">
+<body class="bg-[#0A0A0A] text-gray-200">
 
     <!-- Header - Always Visible -->
     <header class="sticky top-0 z-50 glass-card rounded-none border-b border-[var(--neon-cyan)]">
@@ -110,29 +117,20 @@
             </a>
 
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#home"
-                    class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">HOME</a>
-                <a href="#why-us"
-                    class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">WHY
-                    995</a>
-                <a href="#services"
-                    class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">SERVICES</a>
-                <a href="#portfolio"
-                    class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">PORTFOLIO</a>
-                <a href="experience.html"
-                    class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">EXPERIENCE</a>
-                <a href="shop.html"
-                    class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">SHOP</a>
-                <a href="contact.html"
-                    class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">CONTACT</a>
+                <a href="#home" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">HOME</a>
+                <a href="#why-us" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">WHY 995</a>
+                <a href="#services" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">SERVICES</a>
+                <a href="experience.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">EXPERIENCE</a>
+                <a href="shop.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">SHOP</a>
+                <a href="contact.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">CONTACT</a>
                 <!-- Cart Button -->
-                <button id="cart-btn" class="relative ml-2" title="Shopping Cart">
+                <a href="cart.html" id="cart-btn" class="relative ml-2" title="Shopping Cart">
                     <svg class="w-6 h-6 text-[var(--neon-cyan)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                             d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
                     </svg>
                     <span id="cart-badge" class="cart-badge hidden">0</span>
-                </button>
+                </a>
             </div>
 
             <button id="mobile-menu-btn" class="md:hidden">
@@ -142,25 +140,14 @@
             </button>
         </nav>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-black bg-opacity-80 backdrop-blur-md">
-            <a href="#home"
-                class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">HOME</a>
-            <a href="#why-us"
-                class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">WHY
-                995</a>
-            <a href="#services"
-                class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">SERVICES</a>
-            <a href="#portfolio"
-                class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">PORTFOLIO</a>
-            <a href="experience.html"
-                class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">EXPERIENCE</a>
-            <a href="shop.html"
-                class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">SHOP</a>
-            <a href="contact.html"
-                class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">CONTACT</a>
-            <button id="mobile-cart-btn"
-                class="w-full text-center py-3 px-4 text-lg text-[var(--neon-cyan)] hover:bg-gray-800 font-subheading">CART
-                (<span id="mobile-cart-count">0</span>)</button>
+        <div id="mobile-menu" class="hidden md:hidden bg-black/90 backdrop-blur-md">
+            <a href="#home" class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">HOME</a>
+            <a href="#why-us" class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">WHY 995</a>
+            <a href="#services" class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">SERVICES</a>
+            <a href="experience.html" class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">EXPERIENCE</a>
+            <a href="shop.html" class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">SHOP</a>
+            <a href="contact.html" class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">CONTACT</a>
+            <a href="cart.html" class="block text-center py-3 px-4 text-lg text-[var(--neon-cyan)] hover:bg-gray-800 font-subheading">CART</a>
         </div>
     </header>
 
@@ -179,237 +166,148 @@
             <!-- Scroll Down Arrow -->
             <div class="scroll-arrow" onclick="scrollToHome()">
                 <svg class="w-12 h-12 text-[var(--neon-cyan)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                 </svg>
             </div>
         </section>
 
         <!-- Home Section -->
-        <section id="home" class="min-h-screen flex items-center justify-center data-bg-image">
+        <section id="home" class="min-h-screen flex items-center justify-center">
             <div class="container mx-auto px-6 text-center max-w-7xl">
                 <div class="w-full max-w-5xl mx-auto glass-card p-8 md:p-16 fade-in-up">
-                    <h1 class="text-4xl md:text-7xl font-heading font-bold text-white mb-6 neon-shadow-text-cyan">995
-                        EVENTS</h1>
+                    <h1 class="text-4xl md:text-7xl font-heading font-bold text-white mb-6 neon-shadow-text-cyan">995 EVENTS</h1>
                     <h2 class="text-2xl md:text-4xl font-body-thai-bold text-gray-300 mb-8">
-                        ไม่ใช่แค่ผู้จัดงาน แต่คือ <span
-                            class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 neon-shadow-text-cyan">"Engine
-                            ของประสบการณ์"</span>
+                        ไม่ใช่แค่ผู้จัดงาน แต่คือ <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-purple-500 neon-shadow-text-cyan">"Engine ของประสบการณ์"</span>
                     </h2>
                     <p class="text-lg md:text-xl font-body-thai text-gray-400 max-w-3xl mx-auto">
                         ที่ขับเคลื่อนด้วยมาตรฐานระดับโลก + ความคิดสร้างสรรค์ และเทคโนโลยีอัจฉริยะ
                     </p>
-
-
                     <div class="mt-10">
-                        <a href="#contact" class="promo-magic-button text-lg">START YOUR IMPACT PROJECT</a>
+                        <a href="contact.html" class="promo-magic-button text-lg">START YOUR IMPACT PROJECT</a>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-12 data-bg-image">
+        <!-- About Section -->
+        <section class="py-12" style="background: #0A0A0A;">
             <div class="container mx-auto px-6 max-w-5xl">
                 <div class="glass-card p-8">
                     <div class="text-center mb-6">
-                        <h3 class="text-3xl font-body-thai-bold text-white mb-4 neon-shadow-text-cyan">995Events :
-                            Creative Experience</h3>
+                        <h3 class="text-3xl font-body-thai-bold text-white mb-4 neon-shadow-text-cyan">995Events : Creative Experience</h3>
                     </div>
-
                     <div class="max-w-4xl mx-auto">
-                        <p class="text-lg font-body-thai text-gray-200 leading-relaxed">
-                            ด้วยวิสัยทัศน์ที่เริ่มต้นจากเส้นทางการเป็นผู้เชี่ยวชาญด้านระบบจับเวลาและการบริหารอีเวนท์ระดับประเทศมาตั้งแต่ปี
-                            2016 จาก 995 sport solution ต่อยอดสู่ 995 Events
-                            เพื่อต้องการยกระดับมาตรฐานอีเวนท์ไทยสู่ระดับนานาชาติ ที่ผสานเทคโนโลยีและความคิดสร้างสรรค์
-                            สู่การเป็น 1 ใน 3 Event Organizer ชั้นนำของประเทศ
+                        <p class="text-lg font-body-thai text-gray-200 leading-relaxed text-center">
+                            ด้วยวิสัยทัศน์ที่เริ่มต้นจากเส้นทางการเป็นผู้เชี่ยวชาญด้านระบบจับเวลาและการบริหารอีเวนท์ระดับประเทศมาตั้งแต่ปี 2016
+                            จาก 995 sport solution ต่อยอดสู่ 995 Events เพื่อต้องการยกระดับมาตรฐานอีเวนท์ไทยสู่ระดับนานาชาติ
+                            ที่ผสานเทคโนโลยีและความคิดสร้างสรรค์ สู่การเป็น 1 ใน 3 Event Organizer ชั้นนำของประเทศ
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="py-12 data-bg-image">
-            <div class="container mx-auto px-6 max-w-5xl">
-                <div class="glass-card p-8">
-                    <div class="text-center mb-8">
-                        <h2 class="text-4xl font-body-thai-bold text-white mb-4 neon-shadow-text-cyan">995 Event. Art.
-                            Emotion.</h2>
-                        <p class="text-xl font-body-thai text-gray-300">"- เพราะเราสร้าง "ประสบการณ์ที่คนอยากแชร์ -"</p>
-                    </div>
-                    <!-- การ์ดประสบการณ์แยกต่างหาก -->
-                    <!-- ข้อความแบบคลีนๆ ไม่แบ่งการ์ด -->
-                    <div class="space-y-6 text-center">
-                        <p class="text-gray-300 font-body-thai leading-relaxed text-base">
-                            กว่า 8 ปี บนความเชี่ยวชาญเฉพาะทางเชิงลึกและประสบการณ์จัดงานของจริง
-                            ให้กับหน่วยงานรัฐและเอกชนระดับประเทศมามากมาย<br>
-                            995 EVENTS จึงเป็นผู้จัดงานอีเวนท์เพียงรายเดียวที่รวม "มาตรฐานระดับโลก" เข้ากับ "Real-time
-                            Data Intelligence"<br>
-                            พร้อมทีม Creative & Technical ที่คิดและลงมือในระดับ Production House<br>
-                            เครือข่าย Partner ครอบคลุมตั้งแต่โลจิสติกส์จนถึงด้านสื่อสารการตลาด<br>
-                            และระบบการจัดการวัดผลที่ได้ในระดับมาตรฐานสากล
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PORTFOLIO SECTION -->
-        <section id="portfolio" class="section-spacing data-bg-image">
-            <div class="content-max-width px-8">
-                <h2 class="text-5xl font-heading text-center mb-16 neon-shadow-text-cyan fade-in-up">Our Portfolio</h2>
-
-                <!-- Tabs -->
-                <div class="flex flex-wrap justify-center gap-6 mb-12 fade-in-up" id="portfolio-tabs">
-                    <button class="glass-button active text-lg px-6 py-3" data-target="sports">Sports</button>
-                    <button class="glass-button text-lg px-6 py-3" data-target="events">Events</button>
-                    <button class="glass-button text-lg px-6 py-3" data-target="exhibitions">Exhibitions</button>
-                    <button class="glass-button text-lg px-6 py-3" data-target="influencer">Influencer &
-                        Production</button>
-                </div>
-
-                <!-- Sports Tab -->
-                <div id="sports" class="tab-content">
-                    <div class="glass-card p-12 min-h-[600px]">
-                        <div class="text-center mb-12">
-                            <h3 class="text-5xl font-body-thai-bold text-white mb-6 neon-shadow-text-cyan">Sports</h3>
-                            <p class="text-2xl font-body-thai text-gray-300 mb-8">เราดูแลทุกก้าวของการแข่งขัน
-                                สร้างประสบการณ์ที่น่าประทับใจ</p>
-                        </div>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-                            <div class="relative overflow-hidden rounded-lg aspect-square">
-                                <img src="https://placehold.co/600x400/1d1856/00cfe5?text=Marathon"
-                                    class="w-full h-full object-cover">
-                                <p class="text-base font-body-thai text-gray-300 mt-4 text-center">Marathon & Running
+        <!-- ==================== WHY US ==================== -->
+        <section id="why-us" class="py-24">
+            <div class="container mx-auto px-6 max-w-7xl">
+                <h2 class="text-4xl font-heading font-bold text-center mb-16 neon-shadow-text-cyan fade-in-up">Why choose us ?</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                    <!-- Left Card - The Opportunity Cost -->
+                    <div class="fade-in-up delay-300">
+                        <div class="glass-card p-8 h-full flex flex-col">
+                            <h3 class="text-2xl font-subheading font-semibold text-white mb-4 neon-shadow-text-magenta text-center">The Opportunity Cost</h3>
+                            <p class="text-gray-300 mb-6 font-body-thai text-center">อีเวนท์ยุคเก่ากำลังทำให้คุณพลาดอะไรไป?</p>
+                            <div class="flex-1 p-5 bg-gradient-to-br from-pink-900/40 to-purple-900/40 rounded-xl border border-pink-500/30 backdrop-blur-sm">
+                                <h4 class="text-lg font-subheading font-semibold text-pink-300 mb-4 text-center">ความเสี่ยง&ปัญหาของการจัดงานอีเวนท์</h4>
+                                <p class="text-gray-300 text-sm font-body-thai leading-relaxed mb-6 text-center">
+                                    อีเวนท์แบบเดิมที่แค่จัดงานแล้วจบไป กำลังทำให้แบรนด์ของคุณสูญเสียโอกาสสำคัญ เพราะขาดเทคโนโลยี
                                 </p>
-                            </div>
-                            <div class="relative overflow-hidden rounded-lg aspect-square">
-                                <img src="https://placehold.co/600x400/1d1856/00cfe5?text=Cycling"
-                                    class="w-full h-full object-cover">
-                                <p class="text-base font-body-thai text-gray-300 mt-4 text-center">Cycling Races</p>
-                            </div>
-                            <div class="relative overflow-hidden rounded-lg aspect-square">
-                                <img src="https://placehold.co/600x400/1d1856/00cfe5?text=Swimming"
-                                    class="w-full h-full object-cover">
-                                <p class="text-base font-body-thai text-gray-300 mt-4 text-center">Swimming</p>
-                            </div>
-                            <div class="relative overflow-hidden rounded-lg aspect-square">
-                                <img src="https://placehold.co/600x400/1d1856/00cfe5?text=Football"
-                                    class="w-full h-full object-cover">
-                                <p class="text-base font-body-thai text-gray-300 mt-4 text-center">Football</p>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-gradient-to-b from-pink-800/50 to-purple-800/50 p-4 rounded-lg border border-pink-400/25 text-center">
+                                        <div class="text-pink-300 text-sm font-subheading font-bold mb-2">ROI ต่ำ</div>
+                                        <div class="text-gray-400 text-xs font-body-thai">ไม่มีการวัดผล</div>
+                                    </div>
+                                    <div class="bg-gradient-to-b from-pink-800/50 to-purple-800/50 p-4 rounded-lg border border-pink-400/25 text-center">
+                                        <div class="text-pink-300 text-sm font-subheading font-bold mb-2">ขาด Impact</div>
+                                        <div class="text-gray-400 text-xs font-body-thai">ไม่มีความจดจำ</div>
+                                    </div>
+                                    <div class="bg-gradient-to-b from-pink-800/50 to-purple-800/50 p-4 rounded-lg border border-pink-400/25 text-center">
+                                        <div class="text-pink-300 text-sm font-subheading font-bold mb-2">เสียโอกาส</div>
+                                        <div class="text-gray-400 text-xs font-body-thai">ไม่มี Data</div>
+                                    </div>
+                                    <div class="bg-gradient-to-b from-pink-800/50 to-purple-800/50 p-4 rounded-lg border border-pink-400/25 text-center">
+                                        <div class="text-pink-300 text-sm font-subheading font-bold mb-2">งบประมาณ</div>
+                                        <div class="text-gray-400 text-xs font-body-thai">ไม่คุ้มค่า</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                        <div class="text-center">
-                            <a href="contact.html" class="magic-button text-lg px-8 py-4">More Sports</a>
+                    </div>
+                    <!-- Right Card - 995 EVENTS Solution -->
+                    <div class="fade-in-up delay-600">
+                        <div class="glass-card p-8 h-full flex flex-col">
+                            <h3 class="text-2xl font-subheading font-semibold text-white mb-4 neon-shadow-text-cyan text-center">995 EVENTS Solution</h3>
+                            <p class="text-gray-300 mb-6 font-body-thai text-center">เราสร้างอีเวนท์แบบยืดหยุ่นเพื่อผลลัพธ์ที่ยั่งยืนและยาวนาน</p>
+                            <div class="flex-1 p-5 bg-gradient-to-br from-cyan-900/40 to-blue-900/40 rounded-xl border border-cyan-500/30 backdrop-blur-sm">
+                                <h4 class="text-lg font-subheading font-semibold text-cyan-300 mb-4 text-center">เทคโนโลยี + ความคิดสร้างสรรค์</h4>
+                                <p class="text-gray-300 text-sm font-body-thai leading-relaxed mb-6 text-center">
+                                    ระบบวัดผลแบบเรียลไทม์ และการสร้างประสบการณ์ที่จดจำได้
+                                </p>
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="bg-gradient-to-b from-cyan-800/50 to-blue-800/50 p-4 rounded-lg border border-cyan-400/25 text-center">
+                                        <div class="text-cyan-300 text-sm font-subheading font-bold mb-2">ROI วัดได้</div>
+                                        <div class="text-gray-400 text-xs font-body-thai">Real-time Analytics</div>
+                                    </div>
+                                    <div class="bg-gradient-to-b from-cyan-800/50 to-blue-800/50 p-4 rounded-lg border border-cyan-400/25 text-center">
+                                        <div class="text-cyan-300 text-sm font-subheading font-bold mb-2">High Impact</div>
+                                        <div class="text-gray-400 text-xs font-body-thai">Memorable Experience</div>
+                                    </div>
+                                    <div class="bg-gradient-to-b from-cyan-800/50 to-blue-800/50 p-4 rounded-lg border border-cyan-400/25 text-center">
+                                        <div class="text-cyan-300 text-sm font-subheading font-bold mb-2">Data Driven</div>
+                                        <div class="text-gray-400 text-xs font-body-thai">Future Strategy</div>
+                                    </div>
+                                    <div class="bg-gradient-to-b from-cyan-800/50 to-blue-800/50 p-4 rounded-lg border border-cyan-400/25 text-center">
+                                        <div class="text-cyan-300 text-sm font-subheading font-bold mb-2">คุ้มค่า</div>
+                                        <div class="text-gray-400 text-xs font-body-thai">Long-term Value</div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <!-- Events Tab -->
-                <div id="events" class="tab-content hidden">
-                    <div class="glass-card p-12 min-h-[600px]">
-                        <div class="text-center mb-12">
-                            <h3 class="text-5xl font-body-thai-bold text-white mb-6 neon-shadow-text-cyan">Events</h3>
-                            <p class="text-2xl font-body-thai text-gray-300 mb-8">From Precision to Passion</p>
-                        </div>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-                            <div class="relative overflow-hidden rounded-lg aspect-square">
-                                <img src="https://placehold.co/600x400/1d1856/e80074?text=Launch"
-                                    class="w-full h-full object-cover">
-                            </div>
-                            <div class="relative overflow-hidden rounded-lg aspect-square">
-                                <img src="https://placehold.co/600x400/1d1856/e80074?text=Corporate"
-                                    class="w-full h-full object-cover">
-                            </div>
-                            <div class="relative overflow-hidden rounded-lg aspect-square">
-                                <img src="https://placehold.co/600x400/1d1856/e80074?text=Exhibition"
-                                    class="w-full h-full object-cover">
-                            </div>
-                            <div class="relative overflow-hidden rounded-lg aspect-square">
-                                <img src="https://placehold.co/600x400/1d1856/e80074?text=Concert"
-                                    class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <a href="contact.html" class="magic-button text-lg px-8 py-4">More Events</a>
-                        </div>
+        <!-- ==================== SERVICES ==================== -->
+        <section id="services" class="py-24">
+            <div class="container mx-auto px-6 max-w-7xl">
+                <h2 class="text-4xl font-heading font-bold text-center mb-16 neon-shadow-text-cyan fade-in-up">995 Events : Our Service</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glass-card p-6 fade-in-up delay-200">
+                        <h3 class="text-2xl font-subheading font-semibold text-white mb-3">Turn-key Event Solution</h3>
+                        <p class="text-gray-300 font-body-thai">วางแผน ออกแบบ ผลิต และบริหารครบวงจร</p>
+                    </div>
+                    <div class="glass-card p-6 fade-in-up delay-300">
+                        <h3 class="text-2xl font-subheading font-semibold text-white mb-3">Event Technology Integration</h3>
+                        <p class="text-gray-300 font-body-thai">ระบบลงทะเบียน, การจัดการหน้างาน, Data Tracking, AI &amp; Tech Integration</p>
+                    </div>
+                    <div class="glass-card p-6 fade-in-up delay-400">
+                        <h3 class="text-2xl font-subheading font-semibold text-white mb-3">Creative &amp; Production</h3>
+                        <p class="text-gray-300 font-body-thai">ออกแบบเวที แสง สี เสียง, Interactive Show, Creative Engineering</p>
+                    </div>
+                    <div class="glass-card p-6 fade-in-up delay-500">
+                        <h3 class="text-2xl font-subheading font-semibold text-white mb-3">Public &amp; Corporate Event</h3>
+                        <p class="text-gray-300 font-body-thai">งานรัฐ งานเปิดตัว แถลงข่าว งานมอบรางวัล งานประชุมใหญ่</p>
+                    </div>
+                    <div class="glass-card p-6 fade-in-up delay-600">
+                        <h3 class="text-2xl font-subheading font-semibold text-white mb-3">Brand Activation</h3>
+                        <p class="text-gray-300 font-body-thai">อีเวนท์สร้างภาพลักษณ์และ Engagement ผ่าน Scalable &amp; Hybrid Model</p>
+                    </div>
+                    <div class="glass-card p-6 fade-in-up delay-700">
+                        <h3 class="text-2xl font-subheading font-semibold text-white mb-3">Digital Event Management</h3>
+                        <p class="text-gray-300 font-body-thai">ระบบจัดการอีเวนท์แบบดิจิทัล Live Streaming และ Hybrid Events</p>
                     </div>
                 </div>
-
-                <!-- Exhibitions Tab -->
-                <div id="exhibitions" class="tab-content hidden">
-                    <div class="glass-card p-12 min-h-[600px]">
-                        <div class="text-center mb-12">
-                            <h3 class="text-5xl font-body-thai-bold text-white mb-6 neon-shadow-text-cyan">Exhibitions
-                            </h3>
-                            <p class="text-2xl font-body-thai text-gray-300 mb-8">
-                                สร้างประสบการณ์การเรียนรู้และความประทับใจ</p>
-                        </div>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-                            <div class="relative overflow-hidden rounded-lg aspect-square">
-                                <img src="https://placehold.co/600x400/1d1856/c200db?text=Art"
-                                    class="w-full h-full object-cover">
-                            </div>
-                            <div class="relative overflow-hidden rounded-lg aspect-square">
-                                <img src="https://placehold.co/600x400/1d1856/c200db?text=Science"
-                                    class="w-full h-full object-cover">
-                            </div>
-                            <div class="relative overflow-hidden rounded-lg aspect-square">
-                                <img src="https://placehold.co/600x400/1d1856/c200db?text=Trade"
-                                    class="w-full h-full object-cover">
-                            </div>
-                            <div class="relative overflow-hidden rounded-lg aspect-square">
-                                <img src="https://placehold.co/600x400/1d1856/c200db?text=Museum"
-                                    class="w-full h-full object-cover">
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <a href="contact.html" class="magic-button text-lg px-8 py-4">More Exhibitions</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Influencer Tab -->
-                <div id="influencer" class="tab-content hidden">
-                    <div class="glass-card p-12 min-h-[600px]">
-                        <div class="text-center mb-12">
-                            <h3 class="text-5xl font-body-thai-bold text-white mb-6 neon-shadow-text-cyan">Influencer &
-                                Production</h3>
-                            <p class="text-2xl font-body-thai text-gray-300 mb-8">
-                                สร้างเนื้อหาที่สร้างแรงบันดาลใจและเชื่อมต่อกับออดิเอนซ์</p>
-                        </div>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-10">
-                            <div class="relative overflow-hidden rounded-lg aspect-square">
-                                <img src="https://placehold.co/600x400/1d1856/e80074?text=Influencer"
-                                    class="w-full h-full object-cover">
-                                <p class="text-base font-body-thai text-gray-300 mt-4 text-center text-magenta">
-                                    Influencer Campaign</p>
-                            </div>
-                            <div class="relative overflow-hidden rounded-lg aspect-square">
-                                <img src="https://placehold.co/600x400/1d1856/e80074?text=Video"
-                                    class="w-full h-full object-cover">
-                                <p class="text-base font-body-thai text-gray-300 mt-4 text-center text-magenta">Video
-                                    Production</p>
-                            </div>
-                            <div class="relative overflow-hidden rounded-lg aspect-square">
-                                <img src="https://placehold.co/600x400/1d1856/e80074?text=Social"
-                                    class="w-full h-full object-cover">
-                                <p class="text-base font-body-thai text-gray-300 mt-4 text-center text-magenta">Social
-                                    Media</p>
-                            </div>
-                            <div class="relative overflow-hidden rounded-lg aspect-square">
-                                <img src="https://placehold.co/600x400/1d1856/e80074?text=Live"
-                                    class="w-full h-full object-cover">
-                                <p class="text-base font-body-thai text-gray-300 mt-4 text-center text-magenta">Live
-                                    Streaming</p>
-                            </div>
-                        </div>
-                        <div class="text-center">
-                            <a href="contact.html" class="magic-button text-lg px-8 py-4">More Influencer &
-                                Production</a>
-                        </div>
-                    </div>
-                </div>
-
             </div>
         </section>
     </main>
@@ -430,16 +328,6 @@
                 behavior: 'smooth'
             });
         }
-
-        // Portfolio Tabs
-        document.querySelectorAll('#portfolio-tabs button').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('#portfolio-tabs button').forEach(b => b.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.add('hidden'));
-                btn.classList.add('active');
-                document.getElementById(btn.dataset.target)?.classList.remove('hidden');
-            });
-        });
     </script>
 </body>
 
