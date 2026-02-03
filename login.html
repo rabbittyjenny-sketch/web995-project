@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - เข้าสู่ระบบ | 995 EVENTS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body {
+            background-image: url('bg3.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-color: rgba(10, 10, 10, 0.9);
+            z-index: -1;
+        }
+    </style>
+</head>
+
+<body class="bg-bg-dark text-gray-200">
+
+    <div id="toast" class="toast toast-success"></div>
+
+    <main class="min-h-screen flex items-center justify-center py-12 px-4">
+        <div class="w-full max-w-md">
+            <div class="text-center mb-8">
+                <a href="index.html">
+                    <img src="logo995.png" alt="995 EVENTS" class="h-16 w-auto mx-auto mb-4">
+                </a>
+                <h1 class="text-3xl font-heading neon-shadow-text-cyan">เข้าสู่ระบบ</h1>
+            </div>
+
+            <!-- Login Form -->
+            <div id="login-form" class="glass-card p-8">
+                <form id="loginForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">อีเมล</label>
+                        <input type="email" id="login-email" class="admin-input" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">รหัสผ่าน</label>
+                        <input type="password" id="login-password" class="admin-input" required>
+                    </div>
+
+                    <button type="submit" class="promo-magic-button w-full">เข้าสู่ระบบ</button>
+                </form>
+
+                <div class="mt-6 text-center">
+                    <p class="text-gray-400 text-sm">ยังไม่มีบัญชี?
+                        <button onclick="showRegister()" class="text-cyan hover:underline">สมัครสมาชิก</button>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Register Form -->
+            <div id="register-form" class="glass-card p-8 hidden">
+                <form id="registerForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">ชื่อ-นามสกุล</label>
+                        <input type="text" id="register-name" class="admin-input" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">อีเมล</label>
+                        <input type="email" id="register-email" class="admin-input" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">เบอร์โทรศัพท์</label>
+                        <input type="tel" id="register-phone" class="admin-input" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">รหัสผ่าน</label>
+                        <input type="password" id="register-password" class="admin-input" required>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">ยืนยันรหัสผ่าน</label>
+                        <input type="password" id="register-confirm" class="admin-input" required>
+                    </div>
+
+                    <button type="submit" class="promo-magic-button w-full">สมัครสมาชิก</button>
+                </form>
+
+                <div class="mt-6 text-center">
+                    <p class="text-gray-400 text-sm">มีบัญชีแล้ว?
+                        <button onclick="showLogin()" class="text-cyan hover:underline">เข้าสู่ระบบ</button>
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-6 text-center">
+                <a href="index.html" class="text-gray-400 hover:text-cyan text-sm">← กลับหน้าแรก</a>
+            </div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+    <script src="config.js"></script>
+    <script>
+        const STORAGE_USERS = '995_users';
+
+        const getUsers = () => JSON.parse(localStorage.getItem(STORAGE_USERS)) || [];
+        const saveUsers = (users) => localStorage.setItem(STORAGE_USERS, JSON.stringify(users));
+
+        function showRegister() {
+            document.getElementById('login-form').classList.add('hidden');
+            document.getElementById('register-form').classList.remove('hidden');
+        }
+
+        function showLogin() {
+            document.getElementById('register-form').classList.add('hidden');
+            document.getElementById('login-form').classList.remove('hidden');
+        }
+
+        // Login
+        document.getElementById('loginForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            const users = getUsers();
+            const user = users.find(u => u.email === email && u.password === password);
+
+            if (user) {
+                setCurrentUser({ name: user.name, email: user.email, phone: user.phone });
+                showToast('เข้าสู่ระบบสำเร็จ!', 'success');
+
+                setTimeout(() => {
+                    const redirect = new URLSearchParams(window.location.search).get('redirect');
+                    window.location.href = redirect || 'shop.html';
+                }, 1000);
+            } else {
+                showToast('อีเมลหรือรหัสผ่านไม่ถูกต้อง', 'error');
+            }
+        });
+
+        // Register
+        document.getElementById('registerForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const phone = document.getElementById('register-phone').value;
+            const password = document.getElementById('register-password').value;
+            const confirm = document.getElementById('register-confirm').value;
+
+            if (password !== confirm) {
+                showToast('รหัสผ่านไม่ตรงกัน', 'error');
+                return;
+            }
+
+            const users = getUsers();
+
+            if (users.find(u => u.email === email)) {
+                showToast('อีเมลนี้ถูกใช้งานแล้ว', 'error');
+                return;
+            }
+
+            const newUser = { name, email, phone, password };
+            users.push(newUser);
+            saveUsers(users);
+
+            // Send to Google Sheets
+            saveUserToSheet({ name, email, phone });
+
+            setCurrentUser({ name, email, phone });
+            showToast('สมัครสมาชิกสำเร็จ!', 'success');
+
+            setTimeout(() => {
+                const redirect = new URLSearchParams(window.location.search).get('redirect');
+                window.location.href = redirect || 'shop.html';
+            }, 1000);
+        });
+
+        // Check if already logged in
+        if (getCurrentUser()) {
+            window.location.href = 'shop.html';
+        }
+    </script>
+</body>
+
+</html>

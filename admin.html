@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - 995 EVENTS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .admin-tab {
+            display: none;
+        }
+
+        .admin-tab.active {
+            display: block;
+            fade-in-up;
+        }
+
+        .sidebar-link.active {
+            background: linear-gradient(90deg, rgba(0, 207, 229, 0.2) 0%, transparent 100%);
+            border-left: 4px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+            font-family: 'IBM Plex Sans Thai', sans-serif;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 10px rgba(0, 207, 229, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-bg-dark text-gray-200 flex h-screen overflow-hidden">
+
+    <!-- Sidebar -->
+    <aside class="w-64 glass-card rounded-none h-full border-r border-[var(--neon-cyan)] flex flex-col hidden md:flex">
+        <div class="p-6 flex justify-center border-b border-gray-800">
+            <img src="logo995.png" alt="995 Logo" class="h-10">
+        </div>
+
+        <nav class="flex-1 py-8 space-y-2">
+            <button onclick="switchTab('dashboard')"
+                class="sidebar-link w-full text-left px-6 py-3 hover:text-white transition active">
+                📊 ภาพรวม (Dashboard)
+            </button>
+            <button onclick="switchTab('products')"
+                class="sidebar-link w-full text-left px-6 py-3 hover:text-white transition">
+                🛍️ จัดการสินค้า (Products)
+            </button>
+            <button onclick="switchTab('orders')"
+                class="sidebar-link w-full text-left px-6 py-3 hover:text-white transition">
+                📦 รายการสั่งซื้อ (Orders)
+            </button>
+            <!-- 995 UPDATES MANAGEMENT -->
+            <button onclick="switchTab('blog')"
+                class="sidebar-link w-full text-left px-6 py-3 hover:text-white transition">
+                📰 จัดการข่าวสาร (Updates)
+            </button>
+        </nav>
+
+        <div class="p-6 border-t border-gray-800">
+            <a href="index.html" class="block text-center text-sm text-gray-400 hover:text-white mb-4">←
+                กลับหน้าเว็บไซต์</a>
+            <button onclick="logoutAdmin()"
+                class="glass-button w-full text-red-400 border-red-400 hover:bg-red-500 hover:text-white">
+                ออกจากระบบ
+            </button>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 overflow-y-auto relative">
+        <div id="toast" class="toast hidden"></div>
+
+        <!-- Mobile Header -->
+        <header
+            class="md:hidden p-4 border-b border-gray-800 flex justify-between items-center glass-card rounded-none">
+            <img src="logo995.png" alt="995 Logo" class="h-8">
+            <button onclick="toggleMobileMenu()" class="text-white">☰ เมนู</button>
+        </header>
+
+        <div class="p-8 pb-32">
+
+            <!-- 1. DASHBOARD TAB -->
+            <div id="dashboard-tab" class="admin-tab active">
+                <h1 class="text-3xl font-heading mb-8 neon-shadow-text-cyan">Dashboard</h1>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                    <div class="glass-card p-6">
+                        <h3 class="text-gray-400 text-sm mb-2">ยอดขายรวม</h3>
+                        <p class="text-3xl font-bold text-[var(--neon-cyan)]" id="dash-sales">฿0</p>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h3 class="text-gray-400 text-sm mb-2">ออเดอร์ทั้งหมด</h3>
+                        <p class="text-3xl font-bold text-white" id="dash-orders">0</p>
+                    </div>
+                    <div class="glass-card p-6">
+                        <h3 class="text-gray-400 text-sm mb-2">สินค้าในร้าน</h3>
+                        <p class="text-3xl font-bold text-[var(--neon-magenta)]" id="dash-products">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. PRODUCTS TAB -->
+            <div id="products-tab" class="admin-tab">
+                <div class="flex justify-between items-center mb-8">
+                    <h1 class="text-3xl font-heading neon-shadow-text-cyan">จัดการสินค้า</h1>
+                    <button onclick="showAddProductModal()" class="promo-magic-button py-2 px-4 text-sm">+
+                        เพิ่มสินค้า</button>
+                </div>
+
+                <div class="glass-card overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-black/30 text-gray-400 text-sm uppercase">
+                            <tr>
+                                <th class="p-4">รูป</th>
+                                <th class="p-4">ชื่อสินค้า</th>
+                                <th class="p-4">หมวดหมู่</th>
+                                <th class="p-4">ราคา</th>
+                                <th class="p-4 text-right">จัดการ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-table-body" class="divide-y divide-gray-800">
+                            <!-- Rendered by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 3. ORDERS TAB -->
+            <div id="orders-tab" class="admin-tab">
+                <h1 class="text-3xl font-heading mb-8 neon-shadow-text-cyan">รายการสั่งซื้อ</h1>
+                <div class="glass-card overflow-hidden">
+                    <table class="w-full text-left border-collapse">
+                        <thead class="bg-black/30 text-gray-400 text-sm uppercase">
+                            <tr>
+                                <th class="p-4">Order ID</th>
+                                <th class="p-4">วันที่</th>
+                                <th class="p-4">ลูกค้า</th>
+                                <th class="p-4">ยอดรวม</th>
+                                <th class="p-4">สินค้า</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-table-body" class="divide-y divide-gray-800">
+                            <!-- Rendered by JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- 4. BLOG/UPDATES TAB -->
+            <div id="blog-tab" class="admin-tab">
+                <div class="flex justify-between items-center mb-8">
+                    <h1 class="text-3xl font-heading neon-shadow-text-cyan">จัดการข่าวสาร (995 Updates)</h1>
+                    <button onclick="showAddBlogModal()" class="promo-magic-button py-2 px-4 text-sm">+
+                        เขียนบทความ</button>
+                </div>
+
+                <div class="grid grid-cols-1 gap-6" id="blog-list">
+                    <!-- Blog posts rendered here -->
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Modal: Add Product -->
+    <div id="product-modal"
+        class="fixed inset-0 z-50 hidden flex items-center justify-center bg-black/80 backdrop-blur-sm">
+        <div class="glass-card p-8 w-full max-w-lg relative">
+            <button onclick="closeProductModal()"
+                class="absolute top-4 right-4 text-gray-400 hover:text-white">✕</button>
+            <h2 class="text-2xl font-bold mb-6 text-white">เพิ่ม/แก้ไข สินค้า</h2>
+            <form id="product-form" onsubmit="handleProductSubmit(event)" class="space-y-4">
+                <input type="hidden" id="prod-id">
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1">ชื่อสินค้า</label>
+                    <input type="text" id="prod-name" required placeholder="Ex. 995 T-Shirt">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">ราคา (฿)</label>
+                        <input type="number" id="prod-price" required>
+                    </div>
+                    <div>
+                        <label class="block text-sm text-gray-400 mb-1">หมวดหมู่</label>
+                        <select id="prod-category">
+                            <option value="apparel">Apparel (เสื้อผ้า)</option>
+                            <option value="accessories">Accessories</option>
+                            <option value="bags">Bags (กระเป๋า)</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1">URL รูปภาพ</label>
+                    <input type="url" id="prod-image" placeholder="https://..." required>
+                </div>
+                <button type="submit" class="promo-magic-button w-full">บันทึกสินค้า</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="app.js"></script> <!-- Shared Utils -->
+    <script>
+        // --- Admin Logic ---
+
+        // Check Admin Auth (Simulated)
+        const currentUser = JSON.parse(localStorage.getItem('user_session'));
+        if (!currentUser || currentUser.role !== 'admin') {
+            // Uncomment for production security:
+            // window.location.href = 'login.html';
+            // showToast('Access Denied', 'error');
+        }
+
+        // Tab Switching
+        function switchTab(tabId) {
+            document.querySelectorAll('.admin-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById(tabId + '-tab').classList.add('active');
+
+            document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+            event.target.closest('button').classList.add('active'); // active class on button
+
+            refreshData();
+        }
+
+        // Data Refresh
+        function refreshData() {
+            renderDashboard();
+            renderProducts();
+            renderOrders();
+            renderBlog();
+        }
+
+        // --- Products ---
+        function renderProducts() {
+            const products = JSON.parse(localStorage.getItem('products') || '[]');
+            const tbody = document.getElementById('products-table-body');
+
+            if (products.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-gray-500">ยังไม่มีสินค้าในระบบ</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = products.map(p => `
+                <tr class="hover:bg-white/5 transition">
+                    <td class="p-4"><img src="${p.image}" class="w-12 h-12 object-cover rounded bg-gray-700"></td>
+                    <td class="p-4 font-bold text-white">${p.name}</td>
+                    <td class="p-4"><span class="bg-gray-800 px-2 py-1 rounded text-xs text-gray-300">${p.category}</span></td>
+                    <td class="p-4 text-[var(--neon-cyan)]">฿${p.price.toLocaleString()}</td>
+                    <td class="p-4 text-right space-x-2">
+                        <button onclick="deleteProduct('${p.id}')" class="text-red-400 hover:text-red-300 text-sm">ลบ</button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function showAddProductModal() {
+            document.getElementById('product-form').reset();
+            document.getElementById('prod-id').value = ''; // New product
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        function closeProductModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+        }
+
+        function handleProductSubmit(e) {
+            e.preventDefault();
+            const id = document.getElementById('prod-id').value || 'p' + Date.now();
+            const newProduct = {
+                id: id,
+                name: document.getElementById('prod-name').value,
+                price: parseFloat(document.getElementById('prod-price').value),
+                category: document.getElementById('prod-category').value,
+                image: document.getElementById('prod-image').value
+            };
+
+            const products = JSON.parse(localStorage.getItem('products') || '[]');
+
+            // Edit or Add
+            const existingIndex = products.findIndex(p => p.id === id);
+            if (existingIndex > -1) {
+                products[existingIndex] = newProduct;
+            } else {
+                products.push(newProduct);
+            }
+
+            localStorage.setItem('products', JSON.stringify(products));
+            closeProductModal();
+            showToast('บันทึกสินค้าเรียบร้อย', 'success');
+            refreshData();
+        }
+
+        function deleteProduct(id) {
+            if (!confirm('ยืนยันที่จะลบสินค้านี้?')) return;
+            constproducts = JSON.parse(localStorage.getItem('products') || '[]');
+            const newProducts = products.filter(p => p.id !== id);
+            localStorage.setItem('products', JSON.stringify(newProducts));
+            refreshData();
+        }
+
+        // --- Orders ---
+        function renderOrders() {
+            const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+            const tbody = document.getElementById('orders-table-body');
+
+            if (orders.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="5" class="p-8 text-center text-gray-500">ยังไม่มีรายการสั่งซื้อ</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = orders.map(order => `
+                <tr class="hover:bg-white/5 transition border-b border-gray-800">
+                    <td class="p-4 text-sm text-[var(--neon-cyan)]">${order.orderId}</td>
+                    <td class="p-4 text-sm text-gray-400">${new Date(order.date).toLocaleDateString('th-TH')}</td>
+                    <td class="p-4 text-white">
+                        <div class="font-bold">${order.customer.name}</div>
+                        <div class="text-xs text-gray-500">${order.customer.email}</div>
+                    </td>
+                    <td class="p-4 font-bold text-[var(--neon-magenta)]">฿${order.total.toLocaleString()}</td>
+                    <td class="p-4 text-xs text-gray-400">
+                        ${order.items.map(i => `${i.name} (x${i.quantity})`).join('<br>')}
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // --- Dashboard Stats ---
+        function renderDashboard() {
+            const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+            const products = JSON.parse(localStorage.getItem('products') || '[]');
+
+            const totalSales = orders.reduce((sum, order) => sum + order.total, 0);
+
+            document.getElementById('dash-sales').textContent = '฿' + totalSales.toLocaleString();
+            document.getElementById('dash-orders').textContent = orders.length;
+            document.getElementById('dash-products').textContent = products.length;
+        }
+
+        // --- Blog (Updates) [Placeholder Logic for future implementation] ---
+        function renderBlog() {
+            const blogs = JSON.parse(localStorage.getItem('blogs') || '[]');
+            const container = document.getElementById('blog-list');
+            // Logic to render blogs goes here (Similar to products)
+            if (blogs.length === 0) {
+                container.innerHTML = '<div class="text-center text-gray-500 p-8">ยังไม่มีข่าวสาร</div>';
+            }
+        }
+
+        function logoutAdmin() {
+            localStorage.removeItem('user_session');
+            window.location.href = 'login.html';
+        }
+
+        // Init
+        document.addEventListener('DOMContentLoaded', refreshData);
+
+    </script>
+</body>
+
+</html>

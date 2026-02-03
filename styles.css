@@ -1,0 +1,219 @@
+/* ===== 995 EVENTS - SHARED STYLES ===== */
+
+:root {
+    --bg-dark: #0A0A0A;
+    --neon-cyan: #00cfe5;
+    --neon-magenta: #e80074;
+    --neon-purple: #c200db;
+    --deep-blue: #1d1856;
+    --glass-bg: rgba(26, 26, 30, 0.5);
+    --glass-border: rgba(0, 207, 229, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+    background-color: var(--bg-dark);
+    color: #E0E0E0;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Typography */
+.font-heading { font-family: 'Orbitron', sans-serif; font-weight: 700; }
+.font-subheading { font-family: 'IBM Plex Sans Thai', sans-serif; font-weight: 500; }
+.font-body-thai { font-family: 'IBM Plex Sans Thai', sans-serif; font-weight: 300; }
+.font-body-thai-bold { font-family: 'IBM Plex Sans Thai', sans-serif; font-weight: 700; }
+
+/* Neon Effects */
+.neon-shadow-text-cyan { text-shadow: 0 0 12px var(--neon-cyan), 0 0 25px rgba(0, 207, 229, 0.6); }
+.neon-shadow-text-magenta { text-shadow: 0 0 12px var(--neon-magenta), 0 0 25px rgba(232, 0, 116, 0.6); }
+.text-cyan { color: var(--neon-cyan); }
+.text-magenta { color: var(--neon-magenta); }
+
+/* Background Images */
+[data-bg-image] {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    z-index: 1;
+}
+[data-bg-image]::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: rgba(10, 10, 10, 0.85);
+    z-index: -1;
+}
+
+/* Glass Card */
+.glass-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px) saturate(1.2);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1rem;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.2), 0 4px 16px rgba(0,0,0,0.25), 0 2px 8px rgba(0,207,229,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+}
+.glass-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4), 0 6px 20px rgba(0,207,229,0.4);
+}
+.glass-card-static {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 1rem;
+}
+
+/* Buttons */
+.glass-button {
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+    background: rgba(20,20,30,0.4);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    padding: 0.6rem 1.2rem;
+    border-radius: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+.glass-button:hover, .glass-button.active {
+    background: var(--neon-cyan);
+    color: var(--bg-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 0 30px var(--neon-cyan);
+}
+
+.magic-button {
+    background: rgba(0,207,229,0.15);
+    border: 2px solid var(--neon-cyan);
+    color: var(--neon-cyan);
+    padding: 0.8rem 1.8rem;
+    border-radius: 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+}
+.magic-button:hover {
+    background: var(--neon-cyan);
+    color: var(--bg-dark);
+    transform: translateY(-3px);
+}
+.magic-button.magenta {
+    background: rgba(232,0,116,0.15);
+    border-color: var(--neon-magenta);
+    color: var(--neon-magenta);
+}
+.magic-button.magenta:hover {
+    background: var(--neon-magenta);
+    color: white;
+}
+
+.promo-magic-button {
+    background: rgba(232,0,116,0.7);
+    border: 1px solid var(--neon-magenta);
+    color: white;
+    padding: 0.9rem 2rem;
+    border-radius: 1.5rem;
+    font-weight: 700;
+    cursor: pointer;
+    animation: pulsating-neon 2s infinite alternate;
+    text-decoration: none;
+    display: inline-block;
+}
+@keyframes pulsating-neon {
+    0% { box-shadow: 0 0 20px var(--neon-magenta); }
+    100% { box-shadow: 0 0 35px var(--neon-magenta); }
+}
+
+/* Animations */
+.fade-in-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Toast */
+.toast {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    color: white;
+    font-weight: 500;
+    z-index: 9999;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+.toast-success { background: rgba(0,207,229,0.9); border: 1px solid var(--neon-cyan); }
+.toast-error { background: rgba(232,0,116,0.9); border: 1px solid var(--neon-magenta); }
+
+/* Cart Badge */
+.cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background: var(--neon-magenta);
+    color: white;
+    font-size: 0.65rem;
+    font-weight: 700;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Discount Badge */
+.discount-badge {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: var(--neon-magenta);
+    color: white;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 0.2rem 0.6rem;
+    border-radius: 9999px;
+}
+
+/* Form Inputs */
+.admin-input {
+    padding: 0.5rem 0.75rem;
+    background: rgba(17,17,27,0.7);
+    border: 1px solid rgba(0,207,229,0.3);
+    border-radius: 0.5rem;
+    color: white;
+    font-size: 0.875rem;
+    width: 100%;
+}
+.admin-input:focus {
+    outline: none;
+    border-color: var(--neon-cyan);
+    box-shadow: 0 0 8px rgba(0,207,229,0.3);
+}
+
+/* Utility */
+.hidden { display: none !important; }
+.container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }

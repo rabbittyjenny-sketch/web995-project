@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>995 Updates - ข่าวสารและบทความ | 995 EVENTS</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        #updates {
+            background-image: url('bg1.png');
+        }
+
+        .blog-card {
+            transition: transform 0.3s ease;
+            cursor: pointer;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(4px);
+            z-index: 1200;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+    </style>
+</head>
+
+<body class="bg-bg-dark text-gray-200">
+
+    <!-- Header (Same as index.html) -->
+    <header class="sticky top-0 z-50 glass-card rounded-none border-b border-[var(--neon-cyan)]">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex-shrink-0">
+                <img src="logo995.png" alt="995 EVENTS" class="h-12 w-auto">
+            </a>
+
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html"
+                    class="font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition">HOME</a>
+                <a href="updates.html" class="font-subheading text-[var(--neon-cyan)]">995 UPDATES</a>
+                <a href="contact.html"
+                    class="font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition">CONTACT</a>
+                <a href="shop.html"
+                    class="font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition">SHOP</a>
+
+                <a href="shop.html#cart" class="relative ml-2">
+                    <svg class="w-6 h-6 text-[var(--neon-cyan)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span id="cart-badge" class="cart-badge hidden">0</span>
+                </a>
+
+                <a href="login.html" id="user-btn" class="glass-button text-sm">เข้าสู่ระบบ</a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden">
+                <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-black/90 backdrop-blur-md">
+            <a href="index.html" class="block text-center py-3 font-subheading">HOME</a>
+            <a href="updates.html" class="block text-center py-3 font-subheading text-[var(--neon-cyan)]">995
+                UPDATES</a>
+            <a href="contact.html" class="block text-center py-3 font-subheading">CONTACT</a>
+            <a href="shop.html" class="block text-center py-3 font-subheading">SHOP</a>
+            <a href="login.html" class="block text-center py-3 font-subheading">เข้าสู่ระบบ</a>
+        </div>
+    </header>
+
+    <div id="toast" class="toast toast-success"></div>
+
+    <main>
+        <!-- UPDATES SECTION -->
+        <section id="updates" class="py-24 min-h-screen data-bg-image">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-heading text-center mb-4 neon-shadow-text-cyan fade-in-up">995 Updates</h2>
+                <p class="text-center text-gray-400 mb-12 fade-in-up font-body-thai">ข่าวสาร บทความ และอัปเดตจาก 995
+                    Events</p>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="blog-container">
+                    <!-- Blog posts will be loaded here -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Blog Post Modal -->
+    <div id="blog-modal" class="modal-overlay hidden">
+        <div class="glass-card-static w-full max-w-3xl max-h-[90vh] overflow-y-auto">
+            <div class="relative">
+                <img id="blog-modal-image" src="" class="w-full h-64 object-cover rounded-t-lg">
+                <button id="close-blog-modal"
+                    class="absolute top-4 right-4 w-10 h-10 bg-black/50 rounded-full flex items-center justify-center text-white hover:bg-black/70">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <div class="p-8">
+                <p id="blog-modal-date" class="text-cyan text-sm mb-2"></p>
+                <h2 id="blog-modal-title" class="text-2xl font-heading text-white mb-4"></h2>
+                <div id="blog-modal-content" class="text-gray-300 font-body-thai leading-relaxed"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900/50 py-8 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400 text-sm">&copy; 2025 995 SPORT SOLUTION CO., LTD. All rights reserved.</p>
+            <p class="text-gray-500 text-xs mt-2">TAX ID: 0105562129999</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        // Default Blog Posts
+        const DEFAULT_BLOG = [
+            {
+                id: 'b1',
+                title: '995 Events จัดงาน Marathon สุดยิ่งใหญ่',
+                excerpt: 'งานวิ่งมาราธอนครั้งประวัติศาสตร์ที่รวมนักวิ่งกว่า 10,000 คน',
+                content: '<p>งานวิ่งมาราธอนครั้งประวัติศาสตร์ที่รวมนักวิ่งกว่า 10,000 คน จากทั่วประเทศ พร้อมระบบจับเวลามาตรฐานสากล</p><p>ผู้เข้าร่วมได้รับประสบการณ์ที่ไม่เหมือนใคร ด้วยเทคโนโลยี Real-time Tracking และ Photo Finish</p>',
+                image: 'https://placehold.co/800x400/1d1856/00cfe5?text=Marathon+Event',
+                date: '2025-01-15'
+            },
+            {
+                id: 'b2',
+                title: 'เปิดตัว 995 Merch Shop',
+                excerpt: 'ช้อปสินค้าและของที่ระลึกจาก 995 Events ได้แล้ววันนี้',
+                content: '<p>995 Events เปิดตัวร้านค้าออนไลน์อย่างเป็นทางการ พร้อมสินค้าคุณภาพมากมาย</p><p>ทั้งเสื้อวิ่ง หมวก กระเป๋า และอุปกรณ์กีฬา ในราคาพิเศษ</p>',
+                image: 'https://placehold.co/800x400/1d1856/e80074?text=Shop+Launch',
+                date: '2025-01-10'
+            },
+            {
+                id: 'b3',
+                title: 'เทคโนโลยี AI ในงานอีเวนท์',
+                excerpt: 'ค้นพบว่า AI กำลังเปลี่ยนแปลงวงการอีเวนท์อย่างไร',
+                content: '<p>เทคโนโลยี AI กำลังปฏิวัติวงการอีเวนท์ ตั้งแต่การวิเคราะห์ข้อมูลผู้เข้าร่วม ไปจนถึงการสร้างประสบการณ์ที่เป็นส่วนตัว</p><p>995 Events นำเทคโนโลยี AI มาใช้ในการจัดงาน เพื่อสร้างประสบการณ์ที่ดีที่สุดให้กับลูกค้า</p>',
+                image: 'https://placehold.co/800x400/1d1856/c200db?text=AI+Technology',
+                date: '2025-01-05'
+            }
+        ];
+
+        // Initialize blog
+        if (!localStorage.getItem('995_blog')) {
+            localStorage.setItem('995_blog', JSON.stringify(DEFAULT_BLOG));
+        }
+
+        // Render Blog
+        const renderBlog = () => {
+            const posts = getBlog();
+            const container = document.getElementById('blog-container');
+
+            container.innerHTML = posts.map(p => `
+                <article class="glass-card-static overflow-hidden blog-card" onclick="openBlogPost('${p.id}')">
+                    <img src="${p.image}" class="w-full h-48 object-cover" onerror="this.src='https://placehold.co/800x400/1d1856/00cfe5?text=No+Image'">
+                    <div class="p-6">
+                        <time class="text-cyan text-sm">${p.date}</time>
+                        <h3 class="text-xl font-subheading text-white mt-2 mb-2">${p.title}</h3>
+                        <p class="text-gray-400 text-sm line-clamp-2">${p.excerpt}</p>
+                    </div>
+                </article>
+            `).join('');
+        };
+
+        // Open Blog Post
+        window.openBlogPost = (id) => {
+            const p = getBlog().find(x => x.id === id);
+            if (!p) return;
+
+            document.getElementById('blog-modal-image').src = p.image;
+            document.getElementById('blog-modal-date').textContent = p.date;
+            document.getElementById('blog-modal-title').textContent = p.title;
+            document.getElementById('blog-modal-content').innerHTML = p.content;
+            document.getElementById('blog-modal').classList.remove('hidden');
+        };
+
+        // Close Modal
+        document.getElementById('close-blog-modal').addEventListener('click', () => {
+            document.getElementById('blog-modal').classList.add('hidden');
+        });
+
+        document.getElementById('blog-modal').addEventListener('click', (e) => {
+            if (e.target === e.currentTarget) {
+                e.currentTarget.classList.add('hidden');
+            }
+        });
+
+        // Load blog on page load
+        renderBlog();
+    </script>
+</body>
+
+</html>

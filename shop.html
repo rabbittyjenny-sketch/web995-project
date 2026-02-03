@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHOP - 995 EVENTS</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        .product-card {
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 207, 229, 0.2);
+        }
+
+        .filter-btn.active {
+            background-color: var(--neon-cyan);
+            color: #000;
+        }
+    </style>
+</head>
+
+<body class="bg-bg-dark text-gray-200">
+
+    <!-- Header -->
+    <header class="sticky top-0 z-50 glass-card rounded-none border-b border-[var(--neon-cyan)]">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex-shrink-0">
+                <img src="logo995.png" alt="995 EVENTS" class="h-12 w-auto">
+            </a>
+
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html"
+                    class="font-subheading text-lg text-gray-300 hover:text-[var(--neon-cyan)] transition">HOME</a>
+                <a href="updates.html"
+                    class="font-subheading text-lg text-gray-300 hover:text-[var(--neon-cyan)] transition">995
+                    UPDATES</a>
+                <a href="contact.html"
+                    class="font-subheading text-lg text-gray-300 hover:text-[var(--neon-cyan)] transition">CONTACT</a>
+                <a href="shop.html"
+                    class="font-subheading text-lg text-[var(--neon-cyan)] hover:text-white transition">SHOP</a>
+
+                <a href="#cart" class="relative ml-2 p-2 hover:bg-white/10 rounded-full transition"
+                    onclick="toggleCart()">
+                    <svg class="w-6 h-6 text-[var(--neon-cyan)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                    <span id="cart-badge"
+                        class="absolute -top-1 -right-1 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full hidden">0</span>
+                </a>
+
+                <div id="auth-buttons">
+                    <!-- Javascript will inject login/logout here -->
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden">
+                <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-black/95 backdrop-blur-md absolute w-full border-b border-gray-800">
+            <a href="index.html"
+                class="block text-center py-4 font-subheading hover:bg-gray-900 border-b border-gray-800">HOME</a>
+            <a href="updates.html"
+                class="block text-center py-4 font-subheading hover:bg-gray-900 border-b border-gray-800">995
+                UPDATES</a>
+            <a href="contact.html"
+                class="block text-center py-4 font-subheading hover:bg-gray-900 border-b border-gray-800">CONTACT</a>
+            <a href="shop.html"
+                class="block text-center py-4 font-subheading hover:bg-gray-900 border-b border-gray-800 text-[var(--neon-cyan)]">SHOP</a>
+            <a href="login.html" id="mobile-auth-btn"
+                class="block text-center py-4 font-subheading hover:bg-gray-900">เข้าสู่ระบบ</a>
+        </div>
+    </header>
+
+    <div id="toast" class="toast hidden"></div>
+
+    <main class="container mx-auto px-6 py-12">
+        <h1 class="text-4xl md:text-5xl font-heading text-center mb-12 neon-shadow-text-cyan">995 STORE</h1>
+
+        <!-- Filter -->
+        <div class="flex flex-wrap justify-center gap-4 mb-12">
+            <button class="filter-btn glass-button active" onclick="filterProducts('all')">ทั้งหมด</button>
+            <button class="filter-btn glass-button" onclick="filterProducts('apparel')">เสื้อผ้า</button>
+            <button class="filter-btn glass-button" onclick="filterProducts('accessories')">อุปกรณ์เสริม</button>
+            <button class="filter-btn glass-button" onclick="filterProducts('bags')">กระเป๋า</button>
+        </div>
+
+        <!-- Product Grid -->
+        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <!-- Products will be injected locally -->
+        </div>
+    </main>
+
+    <!-- Cart Sidebar Modal -->
+    <div id="cart-modal" class="fixed inset-0 z-[100] hidden">
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" onclick="toggleCart()"></div>
+        <div class="absolute right-0 top-0 h-full w-full md:w-[450px] bg-gray-900 border-l border-[var(--neon-cyan)] shadow-2xl flex flex-col transition-transform duration-300 transform translate-x-full"
+            id="cart-panel">
+            <div class="p-6 border-b border-gray-800 flex justify-between items-center bg-gray-900/50">
+                <h2 class="text-2xl font-heading text-[var(--neon-cyan)]">ตะกร้าสินค้า</h2>
+                <button onclick="toggleCart()" class="text-gray-400 hover:text-white">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12">
+                        </path>
+                    </svg>
+                </button>
+            </div>
+
+            <div id="cart-items" class="flex-1 overflow-y-auto p-6 space-y-4">
+                <!-- Cart items injected here -->
+                <div class="text-center text-gray-500 mt-10">ไม่มีสินค้าในตะกร้า</div>
+            </div>
+
+            <div class="p-6 border-t border-gray-800 bg-gray-900/50">
+                <div class="flex justify-between mb-4 text-lg font-bold">
+                    <span>ยอดรวมทั้งหมด</span>
+                    <span id="cart-total" class="text-[var(--neon-cyan)]">฿0</span>
+                </div>
+                <button onclick="checkout()" class="promo-magic-button w-full text-center block">ชำระเงิน</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="config.js"></script>
+    <script src="app.js"></script>
+    <script>
+        // Shop Page Logic
+        let allProducts = [];
+
+        async function initShop() {
+            renderAuthButtons();
+
+            // Load Products (Prefer LocalStorage from Admin, else Default)
+            const storedProducts = localStorage.getItem('products');
+            if (storedProducts) {
+                allProducts = JSON.parse(storedProducts);
+            } else {
+                // Default Products
+                allProducts = [
+                    { id: 'p1', name: '995 T-Shirt Limited', price: 990, category: 'apparel', image: 'https://placehold.co/400x400/1d1856/00cfe5?text=T-Shirt' },
+                    { id: 'p2', name: 'Neon Cap', price: 590, category: 'accessories', image: 'https://placehold.co/400x400/1d1856/e80074?text=Cap' },
+                    { id: 'p3', name: 'Event Backpack', price: 1590, category: 'bags', image: 'https://placehold.co/400x400/1d1856/c200db?text=Bag' },
+                    { id: 'p4', name: 'Sports Hoodie', price: 1290, category: 'apparel', image: 'https://placehold.co/400x400/1d1856/00cfe5?text=Hoodie' }
+                ];
+                // Save defaults to storage so Admin can see them too
+                localStorage.setItem('products', JSON.stringify(allProducts));
+            }
+
+            filterProducts('all');
+            updateCartUI(); // From app.js
+        }
+
+        function filterProducts(category) {
+            // Update Active Button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.textContent.includes(category === 'all' ? 'ทั้งหมด' :
+                    category === 'apparel' ? 'เสื้อผ้า' :
+                        category === 'accessories' ? 'อุปกรณ์เสริม' : 'กระเป๋า')) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = '';
+
+            const filtered = category === 'all' ? allProducts : allProducts.filter(p => p.category === category);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="col-span-full text-center text-gray-500 py-12">ไม่พบสินค้าในหมวดหมู่นี้</div>';
+                return;
+            }
+
+            filtered.forEach(p => {
+                const el = document.createElement('div');
+                el.className = 'glass-card p-4 product-card flex flex-col h-full';
+                el.innerHTML = `
+                    <div class="relative aspect-square mb-4 overflow-hidden rounded-lg bg-gray-800">
+                        <img src="${p.image}" alt="${p.name}" class="object-cover w-full h-full">
+                        <div class="absolute top-2 right-2 bg-black/70 px-2 py-1 rounded text-xs text-[var(--neon-cyan)]">${p.category.toUpperCase()}</div>
+                    </div>
+                    <h3 class="text-xl font-heading mb-2 text-white">${p.name}</h3>
+                    <div class="mt-auto flex justify-between items-center">
+                        <span class="text-2xl font-bold text-[var(--neon-magenta)]">฿${p.price.toLocaleString()}</span>
+                        <button onclick="addToCart('${p.id}')" class="glass-button hover:bg-[var(--neon-cyan)] hover:text-black">
+                            เพิ่มลงตะกร้า
+                        </button>
+                    </div>
+                `;
+                grid.appendChild(el);
+            });
+        }
+
+        function toggleCart() {
+            const modal = document.getElementById('cart-modal');
+            const panel = document.getElementById('cart-panel');
+
+            if (modal.classList.contains('hidden')) {
+                modal.classList.remove('hidden');
+                updateCartUI();
+                // Slide in animation
+                setTimeout(() => {
+                    panel.classList.remove('translate-x-full');
+                }, 10);
+            } else {
+                panel.classList.add('translate-x-full');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        async function checkout() {
+            const user = checkLogin();
+            if (!user) {
+                showToast('กรุณาเข้าสู่ระบบก่อนชำระเงิน', 'error');
+                setTimeout(() => window.location.href = 'login.html', 1500);
+                return;
+            }
+
+            const cart = getCart();
+            if (cart.length === 0) {
+                showToast('ตะกร้าสินค้าว่างเปล่า', 'error');
+                return;
+            }
+
+            showToast('กำลังดำเนินการสั่งซื้อ...', 'info');
+
+            // Create Order Object
+            const order = {
+                orderId: 'ORD-' + Date.now(),
+                items: cart,
+                total: cart.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                customer: { name: user.name, email: user.email },
+                date: new Date().toISOString()
+            };
+
+            // 1. Save to Local Storage (Simulated Backend)
+            const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+            orders.unshift(order);
+            localStorage.setItem('orders', JSON.stringify(orders));
+
+            // 2. Clear Cart
+            localStorage.removeItem('cart');
+            updateCartUI();
+            toggleCart();
+
+            // 3. Send to Google Sheets (if Configured)
+            try {
+                // If saveOrderToSheet is defined in config.js/app.js loaded
+                if (typeof saveOrderToSheet === 'function') {
+                    await saveOrderToSheet(order);
+                }
+            } catch (e) {
+                console.warn('Google Sheet Save Failed (Optional)', e);
+            }
+
+            // Success
+            showToast('สั่งซื้อสำเร็จ! ขอบคุณที่ใช้บริการ', 'success');
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', initShop);
+    </script>
+</body>
+
+</html>
