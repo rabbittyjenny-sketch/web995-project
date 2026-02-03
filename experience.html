@@ -25,26 +25,37 @@
                 <img src="logo995.png" alt="995 EVENTS" class="h-12 w-auto">
             </a>
 
-            <div class="flex items-center space-x-6">
+            <div class="hidden md:flex items-center space-x-8">
                 <a href="index.html"
-                    class="font-subheading text-lg text-gray-300 hover:text-[var(--neon-cyan)] transition">HOME</a>
-                <a href="updates.html"
-                    class="font-subheading text-lg text-gray-300 hover:text-[var(--neon-cyan)] transition">NEWS&UPDATE</a>
-                <a href="contact.html"
-                    class="font-subheading text-lg text-gray-300 hover:text-[var(--neon-cyan)] transition">CONTACT</a>
+                    class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">HOME</a>
+                <a href="index.html#why-us"
+                    class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">WHY
+                    995</a>
+                <a href="index.html#services"
+                    class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">SERVICES</a>
+                <a href="index.html#portfolio"
+                    class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">PORTFOLIO</a>
                 <a href="experience.html"
-                    class="font-subheading text-lg text-[var(--neon-cyan)] neon-shadow-text-cyan">EXPERIENCE</a>
+                    class="nav-link font-subheading text-[var(--neon-cyan)] neon-shadow-text-cyan transition duration-300">EXPERIENCE</a>
                 <a href="shop.html"
-                    class="font-subheading text-lg text-gray-300 hover:text-[var(--neon-cyan)] transition">SHOP</a>
-
-                <a href="cart.html" class="relative ml-2" title="Shopping Cart">
-                    <svg class="w-7 h-7 text-[var(--neon-cyan)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">SHOP</a>
+                <a href="contact.html"
+                    class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">CONTACT</a>
+                <!-- Cart Button -->
+                <button id="cart-btn" class="relative ml-2" title="Shopping Cart">
+                    <svg class="w-6 h-6 text-[var(--neon-cyan)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
                     </svg>
                     <span id="cart-badge" class="cart-badge hidden">0</span>
-                </a>
+                </button>
             </div>
+            <button id="mobile-menu-btn" class="md:hidden focus:outline-none">
+                <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+                    </path>
+                </svg>
+            </button>
 
             <button id="mobile-menu-btn" class="md:hidden">
                 <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">

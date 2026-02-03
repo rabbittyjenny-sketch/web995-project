@@ -1,5 +1,4 @@
-/* ===== 995 EVENTS - SHARED STYLES ===== */
-
+/* --- Root Variables & Base Styling --- */
 :root {
     --bg-dark: #0A0A0A;
     --neon-cyan: #00cfe5;
@@ -8,6 +7,8 @@
     --deep-blue: #1d1856;
     --glass-bg: rgba(26, 26, 30, 0.5);
     --glass-border: rgba(0, 207, 229, 0.2);
+    --ai-widget-bg: rgba(20, 20, 30, 0.7);
+    --ai-widget-border: rgba(0, 207, 229, 0.5);
 }
 
 * {
@@ -24,14 +25,14 @@ body {
     min-height: 100vh;
 }
 
-/* Typography */
+/* --- Typography Classes (Ensure consistency) --- */
 .font-heading {
     font-family: 'Orbitron', sans-serif;
     font-weight: 700;
 }
 
 .font-subheading {
-    font-family: 'IBM Plex Sans Thai', sans-serif;
+    font-family: 'Orbitron', sans-serif;
     font-weight: 500;
 }
 
@@ -45,7 +46,12 @@ body {
     font-weight: 700;
 }
 
-/* Neon Effects */
+.font-body-eng {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 400;
+}
+
+/* --- Neon Text Shadow --- */
 .neon-shadow-text-cyan {
     text-shadow: 0 0 12px var(--neon-cyan), 0 0 25px rgba(0, 207, 229, 0.6);
 }
@@ -62,11 +68,11 @@ body {
     color: var(--neon-magenta);
 }
 
-/* Background Images */
+/* --- Background Graphics & Overlay --- */
 [data-bg-image] {
     position: relative;
     background-size: cover;
-    background-position: center;
+    background-position: center center;
     background-attachment: fixed;
     z-index: 1;
 }
@@ -74,40 +80,58 @@ body {
 [data-bg-image]::before {
     content: '';
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     background-color: rgba(10, 10, 10, 0.85);
+    /* Black Overlay */
     z-index: -1;
 }
 
-/* Glass Card */
+/* --- Glassmorphism Card (Neumorphic Glass) --- */
 .glass-card {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px) saturate(1.2);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 1rem;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 16px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(0, 207, 229, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: rgba(20, 20, 30, 0.25);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 207, 229, 0.2);
+    border-radius: 1.5rem;
+    box-shadow:
+        inset 0 3px 5px rgba(255, 255, 255, 0.1),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.2),
+        0 0 20px rgba(0, 207, 229, 0.15),
+        0 0 50px rgba(194, 0, 219, 0.05);
+    transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.5s ease;
     position: relative;
 }
 
 .glass-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 6px 20px rgba(0, 207, 229, 0.4);
+    transform: translateY(-8px) scale(1.01);
+    box-shadow:
+        inset 0 3px 5px rgba(255, 255, 255, 0.15),
+        0 8px 40px rgba(0, 207, 229, 0.6),
+        0 8px 60px rgba(232, 0, 116, 0.3);
 }
 
 .glass-card-static {
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    border-radius: 1rem;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 4px 16px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(0, 207, 229, 0.1);
+    background: rgba(20, 20, 30, 0.25);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(0, 207, 229, 0.2);
+    border-radius: 1.5rem;
+    box-shadow:
+        inset 0 3px 5px rgba(255, 255, 255, 0.1),
+        inset 0 -1px 2px rgba(0, 0, 0, 0.2),
+        0 0 20px rgba(0, 207, 229, 0.15),
+        0 0 50px rgba(194, 0, 219, 0.05);
 }
 
-/* Buttons */
+/* --- Glass Button (Nodular Effect) --- */
 .glass-button {
-    font-family: 'IBM Plex Sans Thai', sans-serif;
+    font-family: 'Orbitron', sans-serif;
     background: rgba(20, 20, 30, 0.4);
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 1px solid var(--neon-cyan);
     color: var(--neon-cyan);
     padding: 0.6rem 1.2rem;
@@ -117,18 +141,28 @@ body {
     cursor: pointer;
     text-decoration: none;
     display: inline-block;
+    box-shadow:
+        inset 2px 2px 5px rgba(0, 0, 0, 0.3),
+        inset -2px -2px 5px rgba(255, 255, 255, 0.1),
+        0 4px 15px rgba(0, 207, 229, 0.3);
 }
 
 .glass-button:hover,
 .glass-button.active {
     background: var(--neon-cyan);
     color: var(--bg-dark);
+    box-shadow:
+        inset 1px 1px 3px rgba(0, 0, 0, 0.5),
+        0 0 25px var(--neon-cyan);
     transform: translateY(-2px);
-    box-shadow: 0 0 30px var(--neon-cyan);
 }
 
+/* --- Magic Button (Shine & Nodular Effect) --- */
 .magic-button {
+    font-family: 'Orbitron', sans-serif;
     background: rgba(0, 207, 229, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     border: 2px solid var(--neon-cyan);
     color: var(--neon-cyan);
     padding: 0.8rem 1.8rem;
@@ -137,54 +171,131 @@ body {
     transition: all 0.3s ease;
     cursor: pointer;
     text-decoration: none;
+    box-shadow:
+        inset 3px 3px 8px rgba(0, 0, 0, 0.4),
+        inset -3px -3px 8px rgba(255, 255, 255, 0.15),
+        0 6px 20px rgba(0, 207, 229, 0.5);
     display: inline-block;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.magic-button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.4) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-20deg);
+    transition: transform 0s;
+    z-index: 2;
 }
 
 .magic-button:hover {
-    background: var(--neon-cyan);
+    background-color: var(--neon-cyan);
     color: var(--bg-dark);
-    transform: translateY(-3px);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow:
+        inset 1px 1px 4px rgba(0, 0, 0, 0.6),
+        0 0 30px var(--neon-cyan);
 }
 
+.magic-button:hover:before {
+    transform: skewX(-20deg) translateX(400%);
+    transition: transform 1.2s ease-in-out;
+}
+
+/* --- Magic Button Magenta --- */
 .magic-button.magenta {
     background: rgba(232, 0, 116, 0.15);
     border-color: var(--neon-magenta);
     color: var(--neon-magenta);
+    box-shadow:
+        inset 3px 3px 8px rgba(0, 0, 0, 0.4),
+        inset -3px -3px 8px rgba(255, 255, 255, 0.15),
+        0 6px 20px rgba(232, 0, 116, 0.5);
 }
 
 .magic-button.magenta:hover {
-    background: var(--neon-magenta);
-    color: white;
+    background-color: var(--neon-magenta);
+    color: var(--bg-dark);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow:
+        inset 1px 1px 4px rgba(0, 0, 0, 0.6),
+        0 0 30px var(--neon-magenta);
 }
 
+.magic-button.magenta:hover:before {
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.6) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-20deg) translateX(400%);
+    transition: transform 1.2s ease-in-out;
+}
+
+/* --- Promo Magic Button (Pulsating) --- */
 .promo-magic-button {
-    background: rgba(232, 0, 116, 0.7);
+    font-family: 'Orbitron', sans-serif;
+    background-color: rgba(232, 0, 116, 0.7);
     border: 1px solid var(--neon-magenta);
     color: white;
     padding: 0.9rem 2rem;
-    border-radius: 1.5rem;
+    border-radius: 9999px;
     font-weight: 700;
     cursor: pointer;
-    animation: pulsating-neon 2s infinite alternate;
     text-decoration: none;
     display: inline-block;
+    transition: all 0.3s ease;
+    box-shadow:
+        inset 4px 4px 10px rgba(0, 0, 0, 0.5),
+        inset -4px -4px 10px rgba(255, 255, 255, 0.2),
+        0 0 20px var(--neon-magenta), 0 0 35px var(--neon-magenta) inset;
+    animation: pulsating-neon 2s infinite alternate;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+
+.promo-magic-button:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 100%);
+    transform: skewX(-20deg);
+    transition: transform 0s;
+    z-index: 2;
+}
+
+.promo-magic-button:hover:before {
+    transform: skewX(-20deg) translateX(400%);
+    transition: transform 1.2s ease-in-out;
 }
 
 @keyframes pulsating-neon {
     0% {
-        box-shadow: 0 0 20px var(--neon-magenta);
+        box-shadow:
+            inset 4px 4px 10px rgba(0, 0, 0, 0.5),
+            inset -4px -4px 10px rgba(255, 255, 255, 0.2),
+            0 0 20px var(--neon-magenta), 0 0 35px var(--neon-magenta) inset;
     }
 
     100% {
-        box-shadow: 0 0 35px var(--neon-magenta);
+        box-shadow:
+            inset 2px 2px 8px rgba(0, 0, 0, 0.6),
+            inset -2px -2px 8px rgba(255, 255, 255, 0.3),
+            0 0 30px var(--neon-magenta), 0 0 50px var(--neon-magenta) inset;
     }
 }
 
-/* Animations */
+/* --- AOS Simulation --- */
 .fade-in-up {
     opacity: 0;
     transform: translateY(30px);
-    transition: opacity 1s ease, transform 1s ease;
+    transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
 .is-visible {
@@ -192,7 +303,44 @@ body {
     transform: translateY(0);
 }
 
-/* Toast */
+/* Delay classes */
+.delay-100 {
+    transition-delay: 0.1s;
+}
+
+.delay-200 {
+    transition-delay: 0.2s;
+}
+
+.delay-300 {
+    transition-delay: 0.3s;
+}
+
+.delay-400 {
+    transition-delay: 0.4s;
+}
+
+.delay-500 {
+    transition-delay: 0.5s;
+}
+
+/* --- Loading Spinner --- */
+.loader {
+    border: 4px solid rgba(255, 255, 255, 0.2);
+    border-left-color: var(--neon-cyan);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* --- Toast Notifications --- */
 .toast {
     position: fixed;
     bottom: 2rem;
@@ -222,7 +370,7 @@ body {
     border: 1px solid var(--neon-magenta);
 }
 
-/* Cart Badge */
+/* --- Cart Badge --- */
 .cart-badge {
     position: absolute;
     top: -6px;
@@ -239,7 +387,7 @@ body {
     justify-content: center;
 }
 
-/* Discount Badge */
+/* --- Discount Badge --- */
 .discount-badge {
     position: absolute;
     top: 0.5rem;
@@ -252,7 +400,7 @@ body {
     border-radius: 9999px;
 }
 
-/* Form Inputs */
+/* --- Form Inputs --- */
 .admin-input {
     padding: 0.5rem 0.75rem;
     background: rgba(17, 17, 27, 0.7);
@@ -269,7 +417,27 @@ body {
     box-shadow: 0 0 8px rgba(0, 207, 229, 0.3);
 }
 
-/* Utility */
+/* --- Section Spacing --- */
+.section-spacing {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+}
+
+@media (min-width: 768px) {
+    .section-spacing {
+        padding-top: 6rem;
+        padding-bottom: 6rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .section-spacing {
+        padding-top: 8rem;
+        padding-bottom: 8rem;
+    }
+}
+
+/* --- Utility --- */
 .hidden {
     display: none !important;
 }
