@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="th" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - บริการของเรา | 995 EVENTS</title>
+    <meta name="description" content="บริการจัดงานอีเวนท์ครบวงจรจาก 995 EVENTS - Turn-key Event Solution, Event Technology, Creative Production">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        :root {
+            --bg-dark: #0A0A0A;
+            --neon-cyan: #00cfe5;
+            --neon-magenta: #e80074;
+            --neon-purple: #c200db;
+            --deep-blue: #1d1856;
+            --glass-bg: rgba(26, 26, 30, 0.5);
+            --glass-border: rgba(0, 207, 229, 0.2);
+        }
+
+        body {
+            font-family: 'IBM Plex Sans Thai', sans-serif;
+            background-color: var(--bg-dark);
+            color: #E0E0E0;
+            background-image: url('470a17f9-1dfb-40be-a8ae-9e41fd521651.jpg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(10, 10, 10, 0.85);
+            z-index: -1;
+        }
+
+        .font-heading { font-family: 'Orbitron', sans-serif; font-weight: 700; }
+        .font-subheading { font-family: 'Orbitron', sans-serif; font-weight: 500; }
+        .font-body-thai { font-family: 'IBM Plex Sans Thai', sans-serif; font-weight: 300; }
+        .font-body-thai-bold { font-family: 'IBM Plex Sans Thai', sans-serif; font-weight: 700; }
+
+        .neon-shadow-text-cyan { text-shadow: 0 0 12px var(--neon-cyan), 0 0 25px rgba(0, 207, 229, 0.6); }
+        .neon-shadow-text-magenta { text-shadow: 0 0 12px var(--neon-magenta), 0 0 25px rgba(232, 0, 116, 0.6); }
+
+        .glass-card {
+            background: rgba(20, 20, 30, 0.25);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 207, 229, 0.2);
+            border-radius: 1.5rem;
+            box-shadow: inset 0 3px 5px rgba(255, 255, 255, 0.1), inset 0 -1px 2px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 207, 229, 0.15), 0 0 50px rgba(194, 0, 219, 0.05);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: inset 0 3px 5px rgba(255, 255, 255, 0.15), 0 8px 40px rgba(0, 207, 229, 0.6), 0 8px 60px rgba(232, 0, 116, 0.3);
+        }
+
+        .glass-button {
+            font-family: 'Orbitron', sans-serif;
+            background: rgba(20, 20, 30, 0.4);
+            backdrop-filter: blur(8px);
+            border: 1px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            padding: 0.6rem 1.2rem;
+            border-radius: 1rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3), inset -2px -2px 5px rgba(255, 255, 255, 0.1), 0 4px 15px rgba(0, 207, 229, 0.3);
+        }
+
+        .glass-button:hover, .glass-button.active {
+            background: var(--neon-cyan);
+            color: var(--bg-dark);
+            box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5), 0 0 25px var(--neon-cyan);
+            transform: translateY(-2px);
+        }
+
+        .magic-button {
+            font-family: 'Orbitron', sans-serif;
+            background: rgba(0, 207, 229, 0.15);
+            backdrop-filter: blur(8px);
+            border: 2px solid var(--neon-cyan);
+            color: var(--neon-cyan);
+            padding: 0.8rem 1.8rem;
+            border-radius: 1.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.4), inset -3px -3px 8px rgba(255, 255, 255, 0.15), 0 6px 20px rgba(0, 207, 229, 0.5);
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .magic-button:hover {
+            background-color: var(--neon-cyan);
+            color: var(--bg-dark);
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.6), 0 0 30px var(--neon-cyan);
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-400 { animation-delay: 0.4s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-600 { animation-delay: 0.6s; }
+        .delay-700 { animation-delay: 0.7s; }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="sticky top-0 z-50 glass-card rounded-none border-b border-[var(--neon-cyan)]">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="index.html" class="flex-shrink-0">
+                <img src="logo995.png" alt="995 EVENTS" class="h-12 w-auto">
+            </a>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="index.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">HOME</a>
+                <a href="why-us.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">WHY 995</a>
+                <a href="services.html" class="nav-link font-subheading text-[var(--neon-cyan)] transition duration-300">SERVICES</a>
+                <a href="experience.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">EXPERIENCE</a>
+                <a href="shop.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">SHOP</a>
+                <a href="contact.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">CONTACT</a>
+                <a href="cart.html" class="relative ml-2" title="Shopping Cart">
+                    <svg class="w-6 h-6 text-[var(--neon-cyan)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
+                    </svg>
+                    <span id="cart-badge" class="cart-badge hidden">0</span>
+                </a>
+            </div>
+
+            <button id="mobile-menu-btn" class="md:hidden">
+                <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-black/90 backdrop-blur-md">
+            <a href="index.html" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">HOME</a>
+            <a href="why-us.html" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">WHY 995</a>
+            <a href="services.html" class="block text-center py-3 font-subheading text-[var(--neon-cyan)]">SERVICES</a>
+            <a href="experience.html" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">EXPERIENCE</a>
+            <a href="shop.html" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">SHOP</a>
+            <a href="contact.html" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">CONTACT</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- SERVICES Section -->
+        <section id="services" class="py-24">
+            <div class="container mx-auto px-6 max-w-7xl">
+                <h2 class="text-4xl font-heading font-bold text-center mb-16 neon-shadow-text-cyan fade-in-up">995 Events : Our Service</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div class="glass-card p-6 fade-in-up delay-200">
+                        <h3 class="text-2xl font-subheading font-semibold text-white mb-3">Turn-key Event Solution</h3>
+                        <p class="text-gray-300 font-body-thai">วางแผน ออกแบบ ผลิต และบริหารครบวงจร</p>
+                    </div>
+                    <div class="glass-card p-6 fade-in-up delay-300">
+                        <h3 class="text-2xl font-subheading font-semibold text-white mb-3">Event Technology Integration</h3>
+                        <p class="text-gray-300 font-body-thai">ระบบลงทะเบียน, การจัดการหน้างาน, Data Tracking, AI &amp; Tech Integration</p>
+                    </div>
+                    <div class="glass-card p-6 fade-in-up delay-400">
+                        <h3 class="text-2xl font-subheading font-semibold text-white mb-3">Creative &amp; Production</h3>
+                        <p class="text-gray-300 font-body-thai">ออกแบบเวที แสง สี เสียง, Interactive Show, Creative Engineering</p>
+                    </div>
+                    <div class="glass-card p-6 fade-in-up delay-500">
+                        <h3 class="text-2xl font-subheading font-semibold text-white mb-3">Public &amp; Corporate Event</h3>
+                        <p class="text-gray-300 font-body-thai">งานรัฐ งานเปิดตัว แถลงข่าว งานมอบรางวัล งานประชุมใหญ่</p>
+                    </div>
+                    <div class="glass-card p-6 fade-in-up delay-600">
+                        <h3 class="text-2xl font-subheading font-semibold text-white mb-3">Brand Activation</h3>
+                        <p class="text-gray-300 font-body-thai">อีเวนท์สร้างภาพลักษณ์และ Engagement ผ่าน Scalable &amp; Hybrid Model</p>
+                    </div>
+                    <div class="glass-card p-6 fade-in-up delay-700">
+                        <h3 class="text-2xl font-subheading font-semibold text-white mb-3">Digital Event Management</h3>
+                        <p class="text-gray-300 font-body-thai">ระบบจัดการอีเวนท์แบบดิจิทัล Live Streaming และ Hybrid Events</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PORTFOLIO Section with Tabs -->
+        <section id="portfolio" class="py-24">
+            <div class="container mx-auto px-6 max-w-7xl">
+                <h2 class="text-4xl font-heading font-bold text-center mb-12 neon-shadow-text-cyan fade-in-up">Our Portfolio</h2>
+
+                <!-- Tabs -->
+                <div class="flex flex-wrap justify-center space-x-4 mb-10 fade-in-up delay-200" id="portfolio-tabs">
+                    <button class="glass-button active" data-target="sports">Sports</button>
+                    <button class="glass-button" data-target="events">Events</button>
+                    <button class="glass-button" data-target="exhibitions">Exhibitions</button>
+                    <button class="glass-button" data-target="influencer">Influencer &amp; Production</button>
+                </div>
+
+                <!-- Sports Tab -->
+                <div id="sports" class="tab-content active fade-in-up">
+                    <div class="glass-card p-10 min-h-[600px] flex flex-col">
+                        <div class="text-center mb-8">
+                            <h3 class="text-4xl font-body-thai-bold text-white mb-4 neon-shadow-text-cyan">Sports</h3>
+                            <p class="text-xl font-body-thai text-gray-300 mb-6">เราดูแลทุกก้าวของการแข่งขัน สร้างประสบการณ์ที่น่าประทับใจ</p>
+                            <div class="max-w-4xl mx-auto mb-8">
+                                <p class="text-lg font-body-thai text-gray-200 leading-relaxed">
+                                    ด้วยประสบการณ์กว่า 8 ปีในการจัดงานกีฬาระดับชาติและนานาชาติ เราเข้าใจทุกรายละเอียดที่จำเป็น
+                                    ตั้งแต่การวางแผนสนามแข่งขัน การจัดการด้านเทคนิค ระบบเสียงและแสง ไปจนถึงการสร้างบรรยากาศ
+                                    ที่จะทำให้ทุกคนหลงใหลในความตื่นเต้นของการแข่งขัน เราไม่เพียงแค่จัดงาน แต่เราสร้าง
+                                    <span class="text-cyan-400 font-body-thai-bold">ความทรงจำ</span>
+                                    และ <span class="text-cyan-400 font-body-thai-bold">ประสบการณ์</span> ที่จะอยู่ในใจนักกีฬาและผู้ชมตลอดไป
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 flex-1">
+                            <div class="sport-card-item">
+                                <div class="relative overflow-hidden rounded-lg aspect-square">
+                                    <img src="https://placehold.co/600x400/1d1856/00cfe5?text=Marathon+Event" alt="Sport Event 1" class="w-full h-full object-cover rounded-lg shadow-lg">
+                                </div>
+                                <p class="text-sm font-body-thai text-gray-300 mt-3 text-center">Marathon &amp; Running Events</p>
+                            </div>
+                            <div class="sport-card-item">
+                                <div class="relative overflow-hidden rounded-lg aspect-square">
+                                    <img src="https://placehold.co/600x400/1d1856/00cfe5?text=Football+Tournament" alt="Sport Event 2" class="w-full h-full object-cover rounded-lg shadow-lg">
+                                </div>
+                                <p class="text-sm font-body-thai text-gray-300 mt-3 text-center">Football Tournaments</p>
+                            </div>
+                            <div class="sport-card-item">
+                                <div class="relative overflow-hidden rounded-lg aspect-square">
+                                    <img src="https://placehold.co/600x400/1d1856/00cfe5?text=Swimming+Competition" alt="Sport Event 3" class="w-full h-full object-cover rounded-lg shadow-lg">
+                                </div>
+                                <p class="text-sm font-body-thai text-gray-300 mt-3 text-center">Swimming Competitions</p>
+                            </div>
+                            <div class="sport-card-item">
+                                <div class="relative overflow-hidden rounded-lg aspect-square">
+                                    <img src="https://placehold.co/600x400/1d1856/00cfe5?text=Cycling+Race" alt="Sport Event 4" class="w-full h-full object-cover rounded-lg shadow-lg">
+                                </div>
+                                <p class="text-sm font-body-thai text-gray-300 mt-3 text-center">Cycling Races</p>
+                            </div>
+                        </div>
+                        <div class="text-center">
+                            <a href="contact.html" class="magic-button inline-flex items-center space-x-2">
+                                <span>More Sports</span>
+                                <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Events Tab -->
+                <div id="events" class="tab-content fade-in-up">
+                    <div class="glass-card p-10 min-h-[600px] flex flex-col">
+                        <div class="text-center mb-8">
+                            <h3 class="text-4xl font-body-thai-bold text-white mb-4 neon-shadow-text-cyan">Events</h3>
+                            <p class="text-xl font-body-thai text-gray-300 mb-6">995 EVENTS : From Precision to Passion</p>
+                            <div class="max-w-4xl mx-auto mb-8">
+                                <p class="text-lg font-body-thai text-gray-200 leading-relaxed">
+                                    สร้างความสมบูรณ์แบบด้วยหัวใจและเทคโนโลยี "ทุกอีเวนท์ต้องสร้างประสบการณ์ที่มีคุณค่าให้ผู้เข้าร่วม
+                                    จดจำและประทับใจ" เราผสมผสาน <span class="font-body-thai-bold">Creative Direction + Art Installation + Technology</span>
+                                    เพื่อสร้างความ <span class="font-body-thai-bold">Impact</span> ทั้งภาพลักษณ์และยอดขาย ใช้เทคโนโลยี AR, Hologram, Projection Mapping อย่างลงตัว
+                                    งานเปิดตัวสินค้า นิทรรศการ งานรัฐพิธี และอีเวนท์เฉพาะกลุ่ม เรามีประสบการณ์ครบทุกรูปแบบ
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 flex-1">
+                            <div class="relative overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/600x400/1d1856/e80074?text=Product+Launch" alt="Product Launch" class="w-full h-full object-cover rounded-lg shadow-lg"></div>
+                            <div class="relative overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/600x400/1d1856/e80074?text=Exhibition" alt="Exhibition" class="w-full h-full object-cover rounded-lg shadow-lg"></div>
+                            <div class="relative overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/600x400/1d1856/e80074?text=Corporate+Event" alt="Corporate Event" class="w-full h-full object-cover rounded-lg shadow-lg"></div>
+                            <div class="relative overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/600x400/1d1856/e80074?text=Art+of+Innovation" alt="Art of Innovation" class="w-full h-full object-cover rounded-lg shadow-lg"></div>
+                        </div>
+                        <div class="text-center">
+                            <a href="contact.html" class="magic-button inline-flex items-center space-x-2"><span>More Events</span><svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Exhibitions Tab -->
+                <div id="exhibitions" class="tab-content fade-in-up">
+                    <div class="glass-card p-10 min-h-[600px] flex flex-col">
+                        <div class="text-center mb-8">
+                            <h3 class="text-4xl font-body-thai-bold text-white mb-4 neon-shadow-text-cyan">Exhibitions</h3>
+                            <p class="text-xl font-body-thai text-gray-300 mb-6">สร้างประสบการณ์การเรียนรู้และความประทับใจผ่านนิทรรศการ</p>
+                            <div class="max-w-4xl mx-auto mb-8">
+                                <p class="text-lg font-body-thai text-gray-200 leading-relaxed">
+                                    ด้วยความเชี่ยวชาญในการออกแบบและจัดนิทรรศการที่สร้างแรงบันดาลใจ เราผสมผสานเทคโนโลยีสมัยใหม่
+                                    เข้ากับการเล่าเรื่องที่น่าสนใจ เพื่อสร้างประสบการณ์ที่ผู้เข้าชมจะจดจำได้นาน ไม่ว่าจะเป็นนิทรรศการศิลปะ
+                                    นิทรรศการทางวิทยาศาสตร์ หรือนิทรรศการเชิงพาณิชย์ เรามุ่งมั่นที่จะสร้าง
+                                    <span class="text-cyan-400 font-body-thai-bold">ความประทับใจ</span>
+                                    และ <span class="text-cyan-400 font-body-thai-bold">การเรียนรู้</span> ที่มีความหมาย
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 flex-1">
+                            <div class="relative overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/600x400/1d1856/00cfe5?text=Art+Exhibition" alt="Art Exhibition" class="w-full h-full object-cover rounded-lg shadow-lg"></div>
+                            <div class="relative overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/600x400/1d1856/00cfe5?text=Science+Museum" alt="Science Museum" class="w-full h-full object-cover rounded-lg shadow-lg"></div>
+                            <div class="relative overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/600x400/1d1856/00cfe5?text=Trade+Show" alt="Trade Show" class="w-full h-full object-cover rounded-lg shadow-lg"></div>
+                            <div class="relative overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/600x400/1d1856/00cfe5?text=Interactive+Display" alt="Interactive Display" class="w-full h-full object-cover rounded-lg shadow-lg"></div>
+                        </div>
+                        <div class="text-center">
+                            <a href="contact.html" class="magic-button inline-flex items-center space-x-2"><span>More Exhibitions</span><svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Influencer Tab -->
+                <div id="influencer" class="tab-content fade-in-up">
+                    <div class="glass-card p-10 min-h-[600px] flex flex-col">
+                        <div class="text-center mb-8">
+                            <h3 class="text-4xl font-body-thai-bold text-white mb-4 neon-shadow-text-cyan">Influencer &amp; Production</h3>
+                            <p class="text-xl font-body-thai text-gray-300 mb-6">สร้างเนื้อหาที่สร้างแรงบันดาลใจและเชื่อมต่อกับออดิเอนซ์</p>
+                            <div class="max-w-4xl mx-auto mb-8">
+                                <p class="text-lg font-body-thai text-gray-200 leading-relaxed">
+                                    เราเข้าใจพลังของการเล่าเรื่องผ่านสื่อดิจิทัล และความสำคัญของการสร้างเนื้อหาที่มีคุณภาพ
+                                    ด้วยทีมงานที่มีประสบการณ์ในการผลิตคอนเทนต์และการทำงานร่วมกับอินฟลูเอนเซอร์ชั้นนำ เราสร้าง
+                                    <span class="text-cyan-400 font-body-thai-bold">เนื้อหาที่มีผลกระทบ</span>
+                                    และ <span class="text-cyan-400 font-body-thai-bold">การผลิตที่มีคุณภาพ</span>
+                                    เพื่อเข้าถึงใจผู้ชมในยุคดิจิทัล
+                                </p>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mb-8 flex-1">
+                            <div class="relative overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/600x400/1d1856/e80074?text=Influencer+Campaign" alt="Influencer Campaign" class="w-full h-full object-cover rounded-lg shadow-lg"></div>
+                            <div class="relative overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/600x400/1d1856/e80074?text=Video+Production" alt="Video Production" class="w-full h-full object-cover rounded-lg shadow-lg"></div>
+                            <div class="relative overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/600x400/1d1856/e80074?text=Social+Media" alt="Social Media" class="w-full h-full object-cover rounded-lg shadow-lg"></div>
+                            <div class="relative overflow-hidden rounded-lg aspect-square"><img src="https://placehold.co/600x400/1d1856/e80074?text=Live+Streaming" alt="Live Streaming" class="w-full h-full object-cover rounded-lg shadow-lg"></div>
+                        </div>
+                        <div class="text-center">
+                            <a href="contact.html" class="magic-button inline-flex items-center space-x-2"><span>More Influencer &amp; Production</span><svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900/50 py-12 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-gray-400">&copy; 2025 995 SPORT SOLUTION CO., LTD. All rights reserved.</p>
+            <p class="text-gray-500 text-sm mt-2">TAX ID: 0105562129999</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+    <script>
+        // Portfolio Tabs
+        document.querySelectorAll('#portfolio-tabs button').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#portfolio-tabs button').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                document.getElementById(btn.dataset.target)?.classList.add('active');
+            });
+        });
+    </script>
+</body>
+
+</html>

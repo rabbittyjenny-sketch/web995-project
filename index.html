@@ -9,14 +9,73 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
 
     <style>
+        :root {
+            --bg-dark: #0A0A0A;
+            --neon-cyan: #00cfe5;
+            --neon-magenta: #e80074;
+            --neon-purple: #c200db;
+            --deep-blue: #1d1856;
+            --glass-bg: rgba(26, 26, 30, 0.5);
+            --glass-border: rgba(0, 207, 229, 0.2);
+        }
+
+        body {
+            font-family: 'IBM Plex Sans Thai', sans-serif;
+            background-color: var(--bg-dark);
+            color: #E0E0E0;
+            overflow-x: hidden;
+        }
+
+        .font-heading { font-family: 'Orbitron', sans-serif; font-weight: 700; }
+        .font-subheading { font-family: 'Orbitron', sans-serif; font-weight: 500; }
+        .font-body-thai { font-family: 'IBM Plex Sans Thai', sans-serif; font-weight: 300; }
+        .font-body-thai-bold { font-family: 'IBM Plex Sans Thai', sans-serif; font-weight: 700; }
+
+        .neon-shadow-text-cyan { text-shadow: 0 0 12px var(--neon-cyan), 0 0 25px rgba(0, 207, 229, 0.6); }
+        .neon-shadow-text-magenta { text-shadow: 0 0 12px var(--neon-magenta), 0 0 25px rgba(232, 0, 116, 0.6); }
+
+        .glass-card {
+            background: rgba(20, 20, 30, 0.25);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(0, 207, 229, 0.2);
+            border-radius: 1.5rem;
+            box-shadow: inset 0 3px 5px rgba(255, 255, 255, 0.1), inset 0 -1px 2px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 207, 229, 0.15), 0 0 50px rgba(194, 0, 219, 0.05);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px) scale(1.01);
+            box-shadow: inset 0 3px 5px rgba(255, 255, 255, 0.15), 0 8px 40px rgba(0, 207, 229, 0.6), 0 8px 60px rgba(232, 0, 116, 0.3);
+        }
+
+        .promo-magic-button {
+            font-family: 'Orbitron', sans-serif;
+            background-color: rgba(232, 0, 116, 0.7);
+            border: 1px solid var(--neon-magenta);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.5), inset -4px -4px 10px rgba(255, 255, 255, 0.2), 0 0 20px var(--neon-magenta), 0 0 35px var(--neon-magenta) inset;
+            animation: pulsating-neon 2s infinite alternate;
+            overflow: hidden;
+            position: relative;
+            display: inline-block;
+        }
+
+        @keyframes pulsating-neon {
+            0% { box-shadow: inset 4px 4px 10px rgba(0, 0, 0, 0.5), inset -4px -4px 10px rgba(255, 255, 255, 0.2), 0 0 20px var(--neon-magenta), 0 0 35px var(--neon-magenta) inset; }
+            100% { box-shadow: inset 2px 2px 8px rgba(0, 0, 0, 0.6), inset -2px -2px 8px rgba(255, 255, 255, 0.3), 0 0 30px var(--neon-magenta), 0 0 50px var(--neon-magenta) inset; }
+        }
+
         /* Hero Video Section */
         #hero-video-section {
             position: relative;
@@ -48,7 +107,6 @@
             background: #000;
         }
 
-        /* Scroll Down Arrow */
         .scroll-arrow {
             position: absolute;
             bottom: 40px;
@@ -60,19 +118,13 @@
         }
 
         @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {
-                transform: translateX(-50%) translateY(0);
-            }
-            40% {
-                transform: translateX(-50%) translateY(-20px);
-            }
-            60% {
-                transform: translateX(-50%) translateY(-10px);
-            }
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
         }
 
-        /* Section Background */
-        #home, #why-us, #services {
+        /* Home Section Background */
+        #home {
             background-image: url('470a17f9-1dfb-40be-a8ae-9e41fd521651.jpg');
             background-size: cover;
             background-position: center;
@@ -80,7 +132,7 @@
             position: relative;
         }
 
-        #home::before, #why-us::before, #services::before {
+        #home::before {
             content: '';
             position: absolute;
             top: 0;
@@ -91,25 +143,29 @@
             z-index: 0;
         }
 
-        #home > *, #why-us > *, #services > * {
+        #home > * {
             position: relative;
             z-index: 1;
         }
 
-        .section-spacing {
-            padding: 6rem 0;
+        .about-section {
+            background-color: var(--bg-dark);
         }
 
-        .content-max-width {
-            max-width: 1400px;
-            margin: 0 auto;
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        @keyframes fadeInUp {
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 
-<body class="bg-[#0A0A0A] text-gray-200">
-
-    <!-- Header - Always Visible -->
+<body>
+    <!-- Header -->
     <header class="sticky top-0 z-50 glass-card rounded-none border-b border-[var(--neon-cyan)]">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="index.html" class="flex-shrink-0">
@@ -117,17 +173,15 @@
             </a>
 
             <div class="hidden md:flex items-center space-x-8">
-                <a href="#home" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">HOME</a>
-                <a href="#why-us" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">WHY 995</a>
-                <a href="#services" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">SERVICES</a>
+                <a href="index.html" class="nav-link font-subheading text-[var(--neon-cyan)] transition duration-300">HOME</a>
+                <a href="why-us.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">WHY 995</a>
+                <a href="services.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">SERVICES</a>
                 <a href="experience.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">EXPERIENCE</a>
                 <a href="shop.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">SHOP</a>
                 <a href="contact.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">CONTACT</a>
-                <!-- Cart Button -->
-                <a href="cart.html" id="cart-btn" class="relative ml-2" title="Shopping Cart">
+                <a href="cart.html" class="relative ml-2" title="Shopping Cart">
                     <svg class="w-6 h-6 text-[var(--neon-cyan)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
                     </svg>
                     <span id="cart-badge" class="cart-badge hidden">0</span>
                 </a>
@@ -141,13 +195,12 @@
         </nav>
 
         <div id="mobile-menu" class="hidden md:hidden bg-black/90 backdrop-blur-md">
-            <a href="#home" class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">HOME</a>
-            <a href="#why-us" class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">WHY 995</a>
-            <a href="#services" class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">SERVICES</a>
-            <a href="experience.html" class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">EXPERIENCE</a>
-            <a href="shop.html" class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">SHOP</a>
-            <a href="contact.html" class="block text-center py-3 px-4 text-lg text-gray-200 hover:bg-gray-800 nav-link font-subheading">CONTACT</a>
-            <a href="cart.html" class="block text-center py-3 px-4 text-lg text-[var(--neon-cyan)] hover:bg-gray-800 font-subheading">CART</a>
+            <a href="index.html" class="block text-center py-3 font-subheading text-[var(--neon-cyan)]">HOME</a>
+            <a href="why-us.html" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">WHY 995</a>
+            <a href="services.html" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">SERVICES</a>
+            <a href="experience.html" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">EXPERIENCE</a>
+            <a href="shop.html" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">SHOP</a>
+            <a href="contact.html" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">CONTACT</a>
         </div>
     </header>
 
@@ -162,8 +215,6 @@
                     Your browser does not support the video tag.
                 </video>
             </div>
-
-            <!-- Scroll Down Arrow -->
             <div class="scroll-arrow" onclick="scrollToHome()">
                 <svg class="w-12 h-12 text-[var(--neon-cyan)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
@@ -190,7 +241,7 @@
         </section>
 
         <!-- About Section -->
-        <section class="py-12" style="background: #0A0A0A;">
+        <section class="py-12 about-section">
             <div class="container mx-auto px-6 max-w-5xl">
                 <div class="glass-card p-8">
                     <div class="text-center mb-6">
@@ -207,105 +258,22 @@
             </div>
         </section>
 
-        <!-- ==================== WHY US ==================== -->
-        <section id="why-us" class="py-24">
-            <div class="container mx-auto px-6 max-w-7xl">
-                <h2 class="text-4xl font-heading font-bold text-center mb-16 neon-shadow-text-cyan fade-in-up">Why choose us ?</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-                    <!-- Left Card - The Opportunity Cost -->
-                    <div class="fade-in-up delay-300">
-                        <div class="glass-card p-8 h-full flex flex-col">
-                            <h3 class="text-2xl font-subheading font-semibold text-white mb-4 neon-shadow-text-magenta text-center">The Opportunity Cost</h3>
-                            <p class="text-gray-300 mb-6 font-body-thai text-center">อีเวนท์ยุคเก่ากำลังทำให้คุณพลาดอะไรไป?</p>
-                            <div class="flex-1 p-5 bg-gradient-to-br from-pink-900/40 to-purple-900/40 rounded-xl border border-pink-500/30 backdrop-blur-sm">
-                                <h4 class="text-lg font-subheading font-semibold text-pink-300 mb-4 text-center">ความเสี่ยง&ปัญหาของการจัดงานอีเวนท์</h4>
-                                <p class="text-gray-300 text-sm font-body-thai leading-relaxed mb-6 text-center">
-                                    อีเวนท์แบบเดิมที่แค่จัดงานแล้วจบไป กำลังทำให้แบรนด์ของคุณสูญเสียโอกาสสำคัญ เพราะขาดเทคโนโลยี
-                                </p>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="bg-gradient-to-b from-pink-800/50 to-purple-800/50 p-4 rounded-lg border border-pink-400/25 text-center">
-                                        <div class="text-pink-300 text-sm font-subheading font-bold mb-2">ROI ต่ำ</div>
-                                        <div class="text-gray-400 text-xs font-body-thai">ไม่มีการวัดผล</div>
-                                    </div>
-                                    <div class="bg-gradient-to-b from-pink-800/50 to-purple-800/50 p-4 rounded-lg border border-pink-400/25 text-center">
-                                        <div class="text-pink-300 text-sm font-subheading font-bold mb-2">ขาด Impact</div>
-                                        <div class="text-gray-400 text-xs font-body-thai">ไม่มีความจดจำ</div>
-                                    </div>
-                                    <div class="bg-gradient-to-b from-pink-800/50 to-purple-800/50 p-4 rounded-lg border border-pink-400/25 text-center">
-                                        <div class="text-pink-300 text-sm font-subheading font-bold mb-2">เสียโอกาส</div>
-                                        <div class="text-gray-400 text-xs font-body-thai">ไม่มี Data</div>
-                                    </div>
-                                    <div class="bg-gradient-to-b from-pink-800/50 to-purple-800/50 p-4 rounded-lg border border-pink-400/25 text-center">
-                                        <div class="text-pink-300 text-sm font-subheading font-bold mb-2">งบประมาณ</div>
-                                        <div class="text-gray-400 text-xs font-body-thai">ไม่คุ้มค่า</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <section class="py-12 about-section">
+            <div class="container mx-auto px-6 max-w-5xl">
+                <div class="glass-card p-8">
+                    <div class="text-center mb-8">
+                        <h2 class="text-4xl font-body-thai-bold text-white mb-4 neon-shadow-text-cyan">995 Event. Art. Emotion.</h2>
+                        <p class="text-xl font-body-thai text-gray-300">"- เพราะเราสร้าง "ประสบการณ์ที่คนอยากแชร์ -"</p>
                     </div>
-                    <!-- Right Card - 995 EVENTS Solution -->
-                    <div class="fade-in-up delay-600">
-                        <div class="glass-card p-8 h-full flex flex-col">
-                            <h3 class="text-2xl font-subheading font-semibold text-white mb-4 neon-shadow-text-cyan text-center">995 EVENTS Solution</h3>
-                            <p class="text-gray-300 mb-6 font-body-thai text-center">เราสร้างอีเวนท์แบบยืดหยุ่นเพื่อผลลัพธ์ที่ยั่งยืนและยาวนาน</p>
-                            <div class="flex-1 p-5 bg-gradient-to-br from-cyan-900/40 to-blue-900/40 rounded-xl border border-cyan-500/30 backdrop-blur-sm">
-                                <h4 class="text-lg font-subheading font-semibold text-cyan-300 mb-4 text-center">เทคโนโลยี + ความคิดสร้างสรรค์</h4>
-                                <p class="text-gray-300 text-sm font-body-thai leading-relaxed mb-6 text-center">
-                                    ระบบวัดผลแบบเรียลไทม์ และการสร้างประสบการณ์ที่จดจำได้
-                                </p>
-                                <div class="grid grid-cols-2 gap-4">
-                                    <div class="bg-gradient-to-b from-cyan-800/50 to-blue-800/50 p-4 rounded-lg border border-cyan-400/25 text-center">
-                                        <div class="text-cyan-300 text-sm font-subheading font-bold mb-2">ROI วัดได้</div>
-                                        <div class="text-gray-400 text-xs font-body-thai">Real-time Analytics</div>
-                                    </div>
-                                    <div class="bg-gradient-to-b from-cyan-800/50 to-blue-800/50 p-4 rounded-lg border border-cyan-400/25 text-center">
-                                        <div class="text-cyan-300 text-sm font-subheading font-bold mb-2">High Impact</div>
-                                        <div class="text-gray-400 text-xs font-body-thai">Memorable Experience</div>
-                                    </div>
-                                    <div class="bg-gradient-to-b from-cyan-800/50 to-blue-800/50 p-4 rounded-lg border border-cyan-400/25 text-center">
-                                        <div class="text-cyan-300 text-sm font-subheading font-bold mb-2">Data Driven</div>
-                                        <div class="text-gray-400 text-xs font-body-thai">Future Strategy</div>
-                                    </div>
-                                    <div class="bg-gradient-to-b from-cyan-800/50 to-blue-800/50 p-4 rounded-lg border border-cyan-400/25 text-center">
-                                        <div class="text-cyan-300 text-sm font-subheading font-bold mb-2">คุ้มค่า</div>
-                                        <div class="text-gray-400 text-xs font-body-thai">Long-term Value</div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- ==================== SERVICES ==================== -->
-        <section id="services" class="py-24">
-            <div class="container mx-auto px-6 max-w-7xl">
-                <h2 class="text-4xl font-heading font-bold text-center mb-16 neon-shadow-text-cyan fade-in-up">995 Events : Our Service</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="glass-card p-6 fade-in-up delay-200">
-                        <h3 class="text-2xl font-subheading font-semibold text-white mb-3">Turn-key Event Solution</h3>
-                        <p class="text-gray-300 font-body-thai">วางแผน ออกแบบ ผลิต และบริหารครบวงจร</p>
-                    </div>
-                    <div class="glass-card p-6 fade-in-up delay-300">
-                        <h3 class="text-2xl font-subheading font-semibold text-white mb-3">Event Technology Integration</h3>
-                        <p class="text-gray-300 font-body-thai">ระบบลงทะเบียน, การจัดการหน้างาน, Data Tracking, AI &amp; Tech Integration</p>
-                    </div>
-                    <div class="glass-card p-6 fade-in-up delay-400">
-                        <h3 class="text-2xl font-subheading font-semibold text-white mb-3">Creative &amp; Production</h3>
-                        <p class="text-gray-300 font-body-thai">ออกแบบเวที แสง สี เสียง, Interactive Show, Creative Engineering</p>
-                    </div>
-                    <div class="glass-card p-6 fade-in-up delay-500">
-                        <h3 class="text-2xl font-subheading font-semibold text-white mb-3">Public &amp; Corporate Event</h3>
-                        <p class="text-gray-300 font-body-thai">งานรัฐ งานเปิดตัว แถลงข่าว งานมอบรางวัล งานประชุมใหญ่</p>
-                    </div>
-                    <div class="glass-card p-6 fade-in-up delay-600">
-                        <h3 class="text-2xl font-subheading font-semibold text-white mb-3">Brand Activation</h3>
-                        <p class="text-gray-300 font-body-thai">อีเวนท์สร้างภาพลักษณ์และ Engagement ผ่าน Scalable &amp; Hybrid Model</p>
-                    </div>
-                    <div class="glass-card p-6 fade-in-up delay-700">
-                        <h3 class="text-2xl font-subheading font-semibold text-white mb-3">Digital Event Management</h3>
-                        <p class="text-gray-300 font-body-thai">ระบบจัดการอีเวนท์แบบดิจิทัล Live Streaming และ Hybrid Events</p>
+                    <div class="space-y-6 text-center">
+                        <p class="text-gray-300 font-body-thai leading-relaxed text-base">
+                            กว่า 8 ปี บนความเชี่ยวชาญเฉพาะทางเชิงลึกและประสบการณ์จัดงานของจริง
+                            ให้กับหน่วยงานรัฐและเอกชนระดับประเทศมามากมาย<br>
+                            995 EVENTS จึงเป็นผู้จัดงานอีเวนท์เพียงรายเดียวที่รวม "มาตรฐานระดับโลก" เข้ากับ "Real-time Data Intelligence"<br>
+                            พร้อมทีม Creative & Technical ที่คิดและลงมือในระดับ Production House<br>
+                            เครือข่าย Partner ครอบคลุมตั้งแต่โลจิสติกส์จนถึงด้านสื่อสารการตลาด<br>
+                            และระบบการจัดการวัดผลที่ได้ในระดับมาตรฐานสากล
+                        </p>
                     </div>
                 </div>
             </div>
@@ -315,18 +283,15 @@
     <!-- Footer -->
     <footer class="bg-gray-900/50 py-12 border-t border-gray-800">
         <div class="container mx-auto px-6 text-center">
-            <p class="text-gray-400">© 2025 995 SPORT SOLUTION CO., LTD. All rights reserved.</p>
+            <p class="text-gray-400">&copy; 2025 995 SPORT SOLUTION CO., LTD. All rights reserved.</p>
             <p class="text-gray-500 text-sm mt-2">TAX ID: 0105562129999</p>
         </div>
     </footer>
 
     <script src="app.js"></script>
     <script>
-        // Scroll to home section
         function scrollToHome() {
-            document.getElementById('home').scrollIntoView({
-                behavior: 'smooth'
-            });
+            document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
