@@ -12,7 +12,6 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css">
 
     <style>
         :root {
@@ -29,116 +28,231 @@
             font-family: 'IBM Plex Sans Thai', sans-serif;
             background-color: var(--bg-dark);
             color: #E0E0E0;
-            background-image: url('470a17f9-1dfb-40be-a8ae-9e41fd521651.jpg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(10, 10, 10, 0.85);
-            z-index: -1;
+            overflow-x: hidden;
         }
 
         .font-heading { font-family: 'Orbitron', sans-serif; font-weight: 700; }
-        .font-subheading { font-family: 'Orbitron', sans-serif; font-weight: 500; }
+        .font-subheading { font-family: 'IBM Plex Sans Thai', sans-serif; font-weight: 500; }
         .font-body-thai { font-family: 'IBM Plex Sans Thai', sans-serif; font-weight: 300; }
         .font-body-thai-bold { font-family: 'IBM Plex Sans Thai', sans-serif; font-weight: 700; }
 
         .neon-shadow-text-cyan { text-shadow: 0 0 12px var(--neon-cyan), 0 0 25px rgba(0, 207, 229, 0.6); }
         .neon-shadow-text-magenta { text-shadow: 0 0 12px var(--neon-magenta), 0 0 25px rgba(232, 0, 116, 0.6); }
 
+        /* Background with overlay */
+        [data-bg-image] {
+            position: relative;
+            background-size: cover;
+            background-position: center center;
+            background-attachment: fixed;
+            z-index: 1;
+        }
+        [data-bg-image]::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: rgba(10, 10, 10, 0.85);
+            z-index: -1;
+        }
+
+        #services { background-image: url('bg3.png'); }
+        #portfolio { background-image: url('bg1.png'); }
+
+        /* Glass Card */
         .glass-card {
-            background: rgba(20, 20, 30, 0.25);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid rgba(0, 207, 229, 0.2);
-            border-radius: 1.5rem;
-            box-shadow: inset 0 3px 5px rgba(255, 255, 255, 0.1), inset 0 -1px 2px rgba(0, 0, 0, 0.2), 0 0 20px rgba(0, 207, 229, 0.15), 0 0 50px rgba(194, 0, 219, 0.05);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px) saturate(1.2);
+            -webkit-backdrop-filter: blur(20px) saturate(1.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 1rem;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+                0 4px 16px rgba(0, 0, 0, 0.25),
+                0 8px 32px rgba(0, 0, 0, 0.15),
+                0 2px 8px rgba(0, 207, 229, 0.1);
+            transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                       box-shadow 0.3s ease,
+                       backdrop-filter 0.3s ease;
+            position: relative;
+            transform-style: preserve-3d;
         }
-
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 25%, rgba(255,255,255,0.02) 50%, rgba(0,0,0,0.02) 100%);
+            border-radius: inherit;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .glass-card > * { position: relative; z-index: 2; }
         .glass-card:hover {
-            transform: translateY(-8px) scale(1.01);
-            box-shadow: inset 0 3px 5px rgba(255, 255, 255, 0.15), 0 8px 40px rgba(0, 207, 229, 0.6), 0 8px 60px rgba(232, 0, 116, 0.3);
+            transform: translateY(-8px) scale(1.02);
+            backdrop-filter: blur(25px) saturate(1.5);
+            -webkit-backdrop-filter: blur(25px) saturate(1.5);
+            box-shadow:
+                inset 0 2px 0 rgba(255,255,255,0.3),
+                inset 0 -1px 0 rgba(255,255,255,0.1),
+                0 12px 40px rgba(0,0,0,0.4),
+                0 20px 60px rgba(0,0,0,0.25),
+                0 6px 20px rgba(0,207,229,0.4),
+                0 0 0 1px rgba(0,207,229,0.2);
         }
 
+        /* Glass Card Static */
+        .glass-card-static {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px) saturate(1.2);
+            -webkit-backdrop-filter: blur(20px) saturate(1.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 1rem;
+            box-shadow:
+                inset 0 1px 0 rgba(255, 255, 255, 0.2),
+                inset 0 -1px 0 rgba(255, 255, 255, 0.05),
+                0 4px 16px rgba(0, 0, 0, 0.25),
+                0 8px 32px rgba(0, 0, 0, 0.15),
+                0 2px 8px rgba(0, 207, 229, 0.1);
+            position: relative;
+        }
+
+        /* Glass Button */
         .glass-button {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'IBM Plex Sans Thai', sans-serif;
             background: rgba(20, 20, 30, 0.4);
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border: 1px solid var(--neon-cyan);
             color: var(--neon-cyan);
             padding: 0.6rem 1.2rem;
             border-radius: 1rem;
             font-weight: 500;
             transition: all 0.3s ease;
-            box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3), inset -2px -2px 5px rgba(255, 255, 255, 0.1), 0 4px 15px rgba(0, 207, 229, 0.3);
+            box-shadow:
+                inset 2px 2px 5px rgba(0,0,0,0.3),
+                inset -2px -2px 5px rgba(255,255,255,0.1),
+                0 4px 15px rgba(0,207,229,0.3);
+            display: inline-block;
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+            cursor: pointer;
         }
-
+        .glass-button:before {
+            content: '';
+            position: absolute;
+            top: 0; left: -150%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-20deg);
+            transition: transform 0s;
+            z-index: 2;
+        }
         .glass-button:hover, .glass-button.active {
             background: var(--neon-cyan);
             color: var(--bg-dark);
-            box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.5), 0 0 25px var(--neon-cyan);
-            transform: translateY(-2px);
+            box-shadow:
+                inset 1px 1px 3px rgba(0,0,0,0.5),
+                0 0 30px var(--neon-cyan),
+                0 0 50px var(--neon-cyan),
+                0 8px 25px rgba(0,207,229,0.5);
+            transform: translateY(-4px) scale(1.05);
+        }
+        .glass-button:hover:before {
+            transform: skewX(-20deg) translateX(400%);
+            transition: transform 1.2s ease-in-out;
         }
 
+        /* Magic Button */
         .magic-button {
-            font-family: 'Orbitron', sans-serif;
+            font-family: 'IBM Plex Sans Thai', sans-serif;
             background: rgba(0, 207, 229, 0.15);
             backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             border: 2px solid var(--neon-cyan);
             color: var(--neon-cyan);
             padding: 0.8rem 1.8rem;
             border-radius: 1.5rem;
             font-weight: 600;
             transition: all 0.3s ease;
-            box-shadow: inset 3px 3px 8px rgba(0, 0, 0, 0.4), inset -3px -3px 8px rgba(255, 255, 255, 0.15), 0 6px 20px rgba(0, 207, 229, 0.5);
+            box-shadow:
+                inset 3px 3px 8px rgba(0,0,0,0.4),
+                inset -3px -3px 8px rgba(255,255,255,0.15),
+                0 6px 20px rgba(0,207,229,0.5);
             display: inline-block;
             overflow: hidden;
             position: relative;
+            z-index: 1;
+            cursor: pointer;
         }
-
+        .magic-button:before {
+            content: '';
+            position: absolute;
+            top: 0; left: -150%;
+            width: 50%; height: 100%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+            transform: skewX(-20deg);
+            transition: transform 0s;
+            z-index: 2;
+        }
         .magic-button:hover {
             background-color: var(--neon-cyan);
             color: var(--bg-dark);
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: inset 1px 1px 4px rgba(0, 0, 0, 0.6), 0 0 30px var(--neon-cyan);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow:
+                inset 1px 1px 4px rgba(0,0,0,0.6),
+                0 0 40px var(--neon-cyan),
+                0 0 60px var(--neon-cyan),
+                0 10px 30px rgba(0,207,229,0.6);
+        }
+        .magic-button:hover:before {
+            transform: skewX(-20deg) translateX(400%);
+            transition: transform 1.2s ease-in-out;
         }
 
+        /* Fade In Animation */
         .fade-in-up {
             opacity: 0;
             transform: translateY(30px);
-            animation: fadeInUp 1s ease forwards;
+            transition: opacity 1s cubic-bezier(0.19, 1, 0.22, 1), transform 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .is-visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .delay-100 { animation-delay: 0.1s; }
-        .delay-200 { animation-delay: 0.2s; }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-400 { animation-delay: 0.4s; }
-        .delay-500 { animation-delay: 0.5s; }
-        .delay-600 { animation-delay: 0.6s; }
-        .delay-700 { animation-delay: 0.7s; }
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+        .delay-500 { transition-delay: 0.5s; }
+        .delay-600 { transition-delay: 0.6s; }
+        .delay-700 { transition-delay: 0.7s; }
 
-        @keyframes fadeInUp {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
+        /* Tab content */
         .tab-content { display: none; }
         .tab-content.active { display: block; }
+
+        /* Cart badge */
+        .cart-badge {
+            position: absolute; top: -6px; right: -6px;
+            background: var(--neon-magenta);
+            color: white; font-size: 0.65rem; font-weight: 700;
+            width: 18px; height: 18px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .hidden { display: none !important; }
+
+        html { scroll-behavior: smooth; }
     </style>
 </head>
 
 <body>
     <!-- Header -->
-    <header class="sticky top-0 z-50 glass-card rounded-none border-b border-[var(--neon-cyan)]">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+    <header class="sticky top-0 z-50 glass-card-static rounded-none border-b border-t-0 border-l-0 border-r-0 border-[var(--neon-cyan)] shadow-lg">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center max-w-7xl">
             <a href="index.html" class="flex-shrink-0">
                 <img src="logo995.png" alt="995 EVENTS" class="h-12 w-auto">
             </a>
@@ -146,7 +260,7 @@
             <div class="hidden md:flex items-center space-x-8">
                 <a href="index.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">HOME</a>
                 <a href="why-us.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">WHY 995</a>
-                <a href="services.html" class="nav-link font-subheading text-[var(--neon-cyan)] transition duration-300">SERVICES</a>
+                <a href="services.html" class="nav-link font-subheading text-[var(--neon-cyan)] neon-shadow-text-cyan transition duration-300">SERVICES</a>
                 <a href="experience.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">EXPERIENCE</a>
                 <a href="shop.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">SHOP</a>
                 <a href="contact.html" class="nav-link font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition duration-300">CONTACT</a>
@@ -158,7 +272,7 @@
                 </a>
             </div>
 
-            <button id="mobile-menu-btn" class="md:hidden">
+            <button id="mobile-menu-btn" class="md:hidden focus:outline-none">
                 <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
@@ -177,7 +291,7 @@
 
     <main>
         <!-- SERVICES Section -->
-        <section id="services" class="py-24">
+        <section id="services" class="py-24" data-bg-image>
             <div class="container mx-auto px-6 max-w-7xl">
                 <h2 class="text-4xl font-heading font-bold text-center mb-16 neon-shadow-text-cyan fade-in-up">995 Events : Our Service</h2>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -210,12 +324,12 @@
         </section>
 
         <!-- PORTFOLIO Section with Tabs -->
-        <section id="portfolio" class="py-24">
+        <section id="portfolio" class="py-24" data-bg-image>
             <div class="container mx-auto px-6 max-w-7xl">
                 <h2 class="text-4xl font-heading font-bold text-center mb-12 neon-shadow-text-cyan fade-in-up">Our Portfolio</h2>
 
                 <!-- Tabs -->
-                <div class="flex flex-wrap justify-center space-x-4 mb-10 fade-in-up delay-200" id="portfolio-tabs">
+                <div class="flex flex-wrap justify-center gap-4 mb-10 fade-in-up delay-200" id="portfolio-tabs">
                     <button class="glass-button active" data-target="sports">Sports</button>
                     <button class="glass-button" data-target="events">Events</button>
                     <button class="glass-button" data-target="exhibitions">Exhibitions</button>
@@ -224,7 +338,7 @@
 
                 <!-- Sports Tab -->
                 <div id="sports" class="tab-content active fade-in-up">
-                    <div class="glass-card p-10 min-h-[600px] flex flex-col">
+                    <div class="glass-card-static p-10 min-h-[600px] flex flex-col">
                         <div class="text-center mb-8">
                             <h3 class="text-4xl font-body-thai-bold text-white mb-4 neon-shadow-text-cyan">Sports</h3>
                             <p class="text-xl font-body-thai text-gray-300 mb-6">เราดูแลทุกก้าวของการแข่งขัน สร้างประสบการณ์ที่น่าประทับใจ</p>
@@ -275,7 +389,7 @@
 
                 <!-- Events Tab -->
                 <div id="events" class="tab-content fade-in-up">
-                    <div class="glass-card p-10 min-h-[600px] flex flex-col">
+                    <div class="glass-card-static p-10 min-h-[600px] flex flex-col">
                         <div class="text-center mb-8">
                             <h3 class="text-4xl font-body-thai-bold text-white mb-4 neon-shadow-text-cyan">Events</h3>
                             <p class="text-xl font-body-thai text-gray-300 mb-6">995 EVENTS : From Precision to Passion</p>
@@ -302,7 +416,7 @@
 
                 <!-- Exhibitions Tab -->
                 <div id="exhibitions" class="tab-content fade-in-up">
-                    <div class="glass-card p-10 min-h-[600px] flex flex-col">
+                    <div class="glass-card-static p-10 min-h-[600px] flex flex-col">
                         <div class="text-center mb-8">
                             <h3 class="text-4xl font-body-thai-bold text-white mb-4 neon-shadow-text-cyan">Exhibitions</h3>
                             <p class="text-xl font-body-thai text-gray-300 mb-6">สร้างประสบการณ์การเรียนรู้และความประทับใจผ่านนิทรรศการ</p>
@@ -330,7 +444,7 @@
 
                 <!-- Influencer Tab -->
                 <div id="influencer" class="tab-content fade-in-up">
-                    <div class="glass-card p-10 min-h-[600px] flex flex-col">
+                    <div class="glass-card-static p-10 min-h-[600px] flex flex-col">
                         <div class="text-center mb-8">
                             <h3 class="text-4xl font-body-thai-bold text-white mb-4 neon-shadow-text-cyan">Influencer &amp; Production</h3>
                             <p class="text-xl font-body-thai text-gray-300 mb-6">สร้างเนื้อหาที่สร้างแรงบันดาลใจและเชื่อมต่อกับออดิเอนซ์</p>
@@ -369,15 +483,38 @@
 
     <script src="app.js"></script>
     <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        }
+
         // Portfolio Tabs
         document.querySelectorAll('#portfolio-tabs button').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('#portfolio-tabs button').forEach(b => b.classList.remove('active'));
                 document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
                 btn.classList.add('active');
-                document.getElementById(btn.dataset.target)?.classList.add('active');
+                const target = document.getElementById(btn.dataset.target);
+                if (target) {
+                    target.classList.add('active');
+                    target.classList.add('is-visible');
+                }
             });
         });
+
+        // Scroll animation observer
+        const fadeObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    fadeObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -10% 0px' });
+
+        document.querySelectorAll('.fade-in-up').forEach(el => fadeObserver.observe(el));
     </script>
 </body>
 
