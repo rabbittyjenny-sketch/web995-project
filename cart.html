@@ -22,7 +22,7 @@
             font-family: 'IBM Plex Sans Thai', sans-serif;
             background-color: var(--bg-dark);
             color: #E0E0E0;
-            background-image: url('470a17f9-1dfb-40be-a8ae-9e41fd521651.jpg');
+            background-image: url('bg1.png');
             background-size: cover;
             background-attachment: fixed;
         }
@@ -130,16 +130,37 @@
             <a href="index.html">
                 <img src="logo995.png" alt="995 EVENTS" class="h-12">
             </a>
-            <div class="flex space-x-6">
-                <a href="index.html"
-                    class="font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition">HOME</a>
-                <a href="shop.html"
-                    class="font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition">SHOP</a>
-                <a href="cart.html" class="font-subheading text-[var(--neon-cyan)] neon-shadow-text-cyan">
-                    🛒 CART (<span id="cart-count">0</span>)
+            <div class="hidden md:flex items-center space-x-6">
+                <a href="index.html" class="font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition">HOME</a>
+                <a href="why-us.html" class="font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition">WHY 995</a>
+                <a href="services.html" class="font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition">SERVICES</a>
+                <a href="experience.html" class="font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition">EXPERIENCE</a>
+                <a href="shop.html" class="font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition">SHOP</a>
+                <a href="contact.html" class="font-subheading text-gray-300 hover:text-[var(--neon-cyan)] transition">CONTACT</a>
+                <a href="cart.html" class="font-subheading text-[var(--neon-cyan)] neon-shadow-text-cyan relative">
+                    <svg class="w-6 h-6 text-[var(--neon-cyan)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 100 4 2 2 0 000-4z" />
+                    </svg>
+                    <span id="cart-count" class="absolute -top-2 -right-2 bg-[var(--neon-magenta)] text-white text-xs font-bold px-1.5 py-0.5 rounded-full">0</span>
                 </a>
             </div>
+            <button id="mobile-menu-btn" class="md:hidden">
+                <svg class="w-8 h-8 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
         </nav>
+
+        <div id="mobile-menu" class="hidden md:hidden bg-black/90 backdrop-blur-md">
+            <a href="index.html" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">HOME</a>
+            <a href="why-us.html" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">WHY 995</a>
+            <a href="services.html" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">SERVICES</a>
+            <a href="experience.html" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">EXPERIENCE</a>
+            <a href="shop.html" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">SHOP</a>
+            <a href="contact.html" class="block text-center py-3 font-subheading text-gray-300 hover:text-[var(--neon-cyan)]">CONTACT</a>
+            <a href="cart.html" class="block text-center py-3 font-subheading text-[var(--neon-cyan)]">CART</a>
+        </div>
     </header>
 
     <!-- Cart Content -->
@@ -216,6 +237,11 @@
     </section>
 
     <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-btn')?.addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
         // Load cart from localStorage
         let cart = JSON.parse(localStorage.getItem('995_cart') || '[]');
 
